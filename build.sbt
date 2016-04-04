@@ -22,5 +22,8 @@ resolvers += "fwbrasil.net" at "http://repo1.maven.org/maven2"
 // other, legacy style, accesses its actions statically.
 routesGenerator := InjectedRoutesGenerator
 
-
 fork in run := true
+
+//Variables de heroku
+herokuAppName in Compile := "aqueous-dusk-80720"
+herokuJdkVersion in Compile := "1.8"
