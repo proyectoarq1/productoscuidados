@@ -1,0 +1,7 @@
+New log file opened at Mon Apr 04 15:38:41 ART 2016 by 4326@tat-C500
+Taking next connection to: 40232
+New client attempting to connect on port: 50122-40232
+  Address = /127.0.1.1:40232
+This client on port 50122 has uuid 92b5cdc5-e75e-447c-bdd0-985f12a5cd92 configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
+Connected Clients: play-fork-run-92b5cdc5-e75e-447c-bdd0-985f12a5cd92
+Taking next connection to: 40232
