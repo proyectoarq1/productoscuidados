@@ -13,7 +13,18 @@ object TestApp extends App {
   println(a.toMongoDBObjetc(negocio))
   println(a.toMongoDBObjetc(precio))
   
-  a.insert_document("test_collection_negocio",a.toMongoDBObjetc(negocio))
-  a.insert_document("test_collection_precio",a.toMongoDBObjetc(precio))
+  a.insert_document("negocios",a.toMongoDBObjetc(negocio))
+  a.insert_document("precios_registrados",a.toMongoDBObjetc(precio))
+  
+  println(a.get_or_create_negocio(negocio))
+  println(a.get_or_create_precio_registrado(precio))
+  
+  precio = new PrecioRegistrado ("codigo2", 23.3, negocio, "3/4/2018" )
+  println(a.get_or_create_precio_registrado(precio))
+  
+
+  
+  a.drop_collection("negocios")
+  a.drop_collection("precios_registrados")
 
 }
