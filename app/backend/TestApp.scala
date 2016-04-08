@@ -1,5 +1,4 @@
 package backend
-import backend.MongoAdapter
 
 object TestApp extends App {   
   val a = new MongoAdapter("localhost",27017, "test")
@@ -29,8 +28,8 @@ object TestApp extends App {
   println(a.get_all_negocios())
   println(a.get_all_precios_registrados())
   
-  a.drop_collection("negocios")
-  a.drop_collection("precios_registrados")
+  //a.drop_collection("negocios")
+  //a.drop_collection("precios_registrados")
   
 
 }

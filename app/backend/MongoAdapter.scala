@@ -87,7 +87,7 @@ class MongoAdapter(db_host : String, db_port: Int, db_selected: String) {
   
   def get_or_creat(o : Object) : (Boolean,MongoDBObject) = o match {  
      case o: Negocio => get_or_create_negocio(o)
-     case o:PrecioRegistrado => get_or_create_precio_registrado(o)
+     case o: PrecioRegistrado => get_or_create_precio_registrado(o)
 }
   
   def get_or_create_negocio(negocio : Negocio) : (Boolean,MongoDBObject) = {
@@ -100,7 +100,7 @@ class MongoAdapter(db_host : String, db_port: Int, db_selected: String) {
       
       case Some(dbObject) => return (false,dbObject)
       case None => val negocio_mongo_object = toMongoDBObjetc(negocio);
-                   insert_document("precios_registrados",negocio_mongo_object); 
+                   insert_document("negocios",negocio_mongo_object); 
                    return (true,negocio_mongo_object)
       
     }
@@ -127,29 +127,34 @@ class MongoAdapter(db_host : String, db_port: Int, db_selected: String) {
   }
 
   def get_all_precios_registrados() : List[PrecioRegistrado] = {
-    val cursor = get_all_precios_registrados_mongo()
+    val precios_registados_mongo = get_all_precios_registrados_mongo()
     var precios_registados = List[PrecioRegistrado]()
-    for { x <- cursor} precios_registados = toPrecioRegistrado(x) :: precios_registados;
+    for { x <- precios_registados_mongo} precios_registados = toPrecioRegistrado(x) :: precios_registados;
     return precios_registados
   }
   
-  def get_all_precios_registrados_mongo() : MongoCursor = {
+  def get_all_precios_registrados_mongo() : List[MongoDBObject] = {
     
-    return mongoDB("precios_registrados").find() 
+    val cursor = mongoDB("precios_registrados").find()
+    var precios_registados = List[MongoDBObject]()
+    for { x <- cursor} precios_registados = x :: precios_registados;
+    return precios_registados
     
   }
   
   def get_all_negocios() : List[Negocio] = {
-    val cursor = get_all_negocios_mongo()
+    val mongo_negocios = get_all_negocios_mongo()
     var negocios = List[Negocio]()
-    for { x <- cursor} negocios = toNegocio(x) :: negocios;
+    for { x <- mongo_negocios} negocios = toNegocio(x) :: negocios;
     return negocios
   }
   
-  def get_all_negocios_mongo() : MongoCursor = {
+  def get_all_negocios_mongo() : List[MongoDBObject] = {
     
-    return mongoDB("negocios").find() 
-    
+    val cursor = mongoDB("negocios").find()
+    var negocios = List[MongoDBObject]()
+    for { x <- cursor} negocios = x :: negocios;
+    return negocios
   }
   
 }

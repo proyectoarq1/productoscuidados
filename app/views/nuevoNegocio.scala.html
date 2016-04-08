@@ -1,0 +1,13 @@
+@(message: String)
+
+@main("Agregar un negocio") {
+
+	<form action="@routes.Application.agregarPrecioRegistrado" method="post">
+		<input name="codigo" type="text">
+		<input name="precio" type="text">
+		<input name="negocio" type="text">
+		<input name="fecha_hora" type="text">
+		<button> Agregar precio registrado </button>
+	</form>
+
+}

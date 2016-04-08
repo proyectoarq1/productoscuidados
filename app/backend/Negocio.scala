@@ -1,7 +1,7 @@
 package backend
 import com.mongodb.casbah.Imports._
 
-class Negocio(latitud: String, longitud:String, direccion_negocio:String, ciudad_negocio:String, nombre_negocio:String)
+case class Negocio(latitud: String, longitud:String, direccion_negocio:String, ciudad_negocio:String, nombre_negocio:String)
 {
 
   var lat: String = latitud

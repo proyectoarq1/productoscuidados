@@ -1,6 +1,6 @@
 package backend
 
-class PrecioRegistrado (cod_barra: String, precio_prod : Double, lugar : Negocio, fecha: String ) {
+case class PrecioRegistrado (cod_barra: String, precio_prod : Double, lugar : Negocio, fecha: String ) {
 
     var codigo : String = cod_barra
     var precio : Double = precio_prod

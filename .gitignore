@@ -9,6 +9,7 @@ target
 .cache-main
 .cache-tests
 bin
+bin/*
 
 # SBT
 dist
