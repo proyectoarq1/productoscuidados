@@ -26,9 +26,11 @@ object TestApp extends App {
   println(a.delete(precio))
   println(a.delete(precio))
   
-
+  println(a.get_all_negocios())
+  println(a.get_all_precios_registrados())
   
   a.drop_collection("negocios")
   a.drop_collection("precios_registrados")
+  
 
 }

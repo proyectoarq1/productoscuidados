@@ -40,6 +40,8 @@ class MongoAdapter(db_host : String, db_port: Int, db_selected: String) {
     
     
   }
+ 
+
   def toMongoDBObjetc(o : Object) : MongoDBObject = o match {
     case o:Negocio => MongoDBObject("lat" -> o.lat, 
                                     "lng" -> o.lng, 
@@ -124,6 +126,30 @@ class MongoAdapter(db_host : String, db_port: Int, db_selected: String) {
    
   }
 
-
+  def get_all_precios_registrados() : List[PrecioRegistrado] = {
+    val cursor = get_all_precios_registrados_mongo()
+    var precios_registados = List[PrecioRegistrado]()
+    for { x <- cursor} precios_registados = toPrecioRegistrado(x) :: precios_registados;
+    return precios_registados
+  }
+  
+  def get_all_precios_registrados_mongo() : MongoCursor = {
+    
+    return mongoDB("precios_registrados").find() 
+    
+  }
+  
+  def get_all_negocios() : List[Negocio] = {
+    val cursor = get_all_negocios_mongo()
+    var negocios = List[Negocio]()
+    for { x <- cursor} negocios = toNegocio(x) :: negocios;
+    return negocios
+  }
+  
+  def get_all_negocios_mongo() : MongoCursor = {
+    
+    return mongoDB("negocios").find() 
+    
+  }
   
 }
