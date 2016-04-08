@@ -52,9 +52,40 @@ class MongoAdapter(db_host : String, db_port: Int, db_selected: String) {
                                              "fecha_hora" -> o.fecha_hora)
  }
   
-  def get_or_creat(o : Object) : MongoDBObject = o match {  
-     case o:Negocio => null
-     case o:PrecioRegistrado => null
+  def delete(o : Object) : Boolean = {
+    
+    val result = o match {
+      case o: Negocio => delete_negocio(o);
+      case o:PrecioRegistrado => delete_precio_registrado(o)
+    }
+   val deleted = result match {
+      case Some(l) => true
+      case None => false 
+    }
+   return deleted
+ }
+  
+  def delete_negocio(negocio : Negocio) : Option[DBObject] = {
+    val query = MongoDBObject("ciudad" -> negocio.ciudad,
+                              "nombre" -> negocio.nombre)
+    val result = mongoDB("negocios").findAndRemove(query)
+    return result
+  }
+  
+  def delete_precio_registrado(precio_registrado : PrecioRegistrado) : Option[DBObject] = {
+    
+    val query = MongoDBObject("codigo" -> precio_registrado.codigo,
+                              "negocio.nombre" -> precio_registrado.negocio.nombre,
+                              "negocio.ciudad"-> precio_registrado.negocio.ciudad) 
+    
+    val result = mongoDB("precios_registrados").findAndRemove(query)
+
+    return result
+  }
+  
+  def get_or_creat(o : Object) : (Boolean,MongoDBObject) = o match {  
+     case o: Negocio => get_or_create_negocio(o)
+     case o:PrecioRegistrado => get_or_create_precio_registrado(o)
 }
   
   def get_or_create_negocio(negocio : Negocio) : (Boolean,MongoDBObject) = {

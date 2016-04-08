@@ -21,6 +21,10 @@ object TestApp extends App {
   
   precio = new PrecioRegistrado ("codigo2", 23.3, negocio, "3/4/2018" )
   println(a.get_or_create_precio_registrado(precio))
+  println(a.get_or_create_precio_registrado(precio))
+  
+  println(a.delete(precio))
+  println(a.delete(precio))
   
 
   
