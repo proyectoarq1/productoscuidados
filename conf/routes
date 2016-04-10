@@ -6,22 +6,22 @@
 GET     /                           controllers.Application.index
 
 # Negocios
-GET     /negocios                   controllers.Application.getNegocios
+GET     /shops                   controllers.Application.getShops
 
 #Get nuevo negocio
-GET 	/nuevoNegocio				controllers.Application.nuevoNegocio
+GET 	/newshop				controllers.Application.newShop
 
 #Agregar negocio
-POST	/agregarNegocio				controllers.Application.agregarNegocio
+POST	/shops				controllers.Application.addShop
 
 # Precios
-GET     /precios                   controllers.Application.getPreciosRegistrados
+GET     /found-prices                   controllers.Application.getFoundPrices
 
 #Get nuevo negocio
-GET 	/nuevoPrecioRegistrado				controllers.Application.nuevoPrecioRegistrado
+GET 	/newfoundprice			controllers.Application.newFoundPrice
 
 #Agregar negocio
-POST	/agregarPrecioRegistrado				controllers.Application.agregarPrecioRegistrado
+POST	/found-prices				controllers.Application.addFoundPrice
 
 
 

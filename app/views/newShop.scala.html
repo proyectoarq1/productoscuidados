@@ -1,0 +1,15 @@
+@(message: String)
+
+@main("New Shop") {
+
+	<form action="@routes.Application.addShop" method="post">
+		<label>Latitude:</label><input name="latitude" type="double"></br>
+		<label>Longitude:</label><input name="longitude" type="double"></br>
+		<label>Address:</label><input name="address" type="text"></br>
+		<label>Location:</label><input name="location" type="text"></br>
+		<label>Name:</label><input name="name" type="text"></br>
+		<button> Add Shop </button>
+	
+	</form>
+
+}

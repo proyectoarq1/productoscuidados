@@ -3,7 +3,7 @@ package controllers
 import play.api._
 import play.api.mvc._
 import backend._
-import backend.Negocio
+import backend.Shop
 import play.api.libs.json._
 import play.api.data._
 import play.api.data.Forms._
@@ -19,60 +19,60 @@ class Application extends Controller {
     Ok(views.html.index("Your new application is reeady."))
   }
   
-  def getNegocios = Action {
-    Ok(com.mongodb.util.JSON.serialize(adapter.get_all_negocios_mongo()))
+  def getShops = Action {
+    Ok(com.mongodb.util.JSON.serialize(adapter.get_all_shops_mongo()))
   }
 
-  val negocioForm : Form[Negocio] = Form (
+  val shopForm : Form[Shop] = Form (
     mapping(
-      "lat"-> text,
-      "lng"-> text,
-      "direccion"-> text, 
-      "ciudad"-> text,
-      "nombre" -> text
+      "latitude"-> of[Double],
+      "longitude"-> of[Double],
+      "address"-> text, 
+      "location"-> text,
+      "name" -> text
       
-    )(Negocio.apply)(Negocio.unapply)
+    )(Shop.apply)(Shop.unapply)
     
   )
   
-  def nuevoNegocio = Action {
-    Ok(views.html.nuevoNegocio("Nuevo negocio"))
+  def newShop = Action {
+    Ok(views.html.newShop("Nuevo negocio"))
   }
   
-  def agregarNegocio = Action { implicit request =>
-    val negocio = negocioForm.bindFromRequest.get
-    val a, guardado = adapter.get_or_creat(negocio)
+  def addShop = Action { implicit request =>
+    val shop = shopForm.bindFromRequest.get
+    val a, saved = adapter.get_or_creat(shop)
     println(a)
-    println(negocio)
-    println(guardado)
-    Redirect(routes.Application.getNegocios())
+    println(shop)
+    println(saved)
+    Redirect(routes.Application.getShops())
   }
   
-  def getPreciosRegistrados = Action {
-    Ok(com.mongodb.util.JSON.serialize(adapter.get_all_precios_registrados_mongo()))
+  def getFoundPrices = Action {
+    Ok(com.mongodb.util.JSON.serialize(adapter.get_all_found_prices_mongo()))
   }
   
-  val precioRegistradoForm : Form[PrecioRegistrado] = Form (
+  val foundPriceForm : Form[FoundPrice] = Form (
     mapping(
-      "codigo"-> text,
-      "precio"-> of[Double],
-      "negocio"-> null, 
-      "fecha_hora"-> text 
-    )(PrecioRegistrado.apply)(PrecioRegistrado.unapply)
+      "product_id"-> text,
+      "price"-> of[Double],
+      "datetime"-> text,
+      "shop_id" -> text
+    )(FoundPrice.apply)(FoundPrice.unapply)
     
   )
   
-  def nuevoPrecioRegistrado = Action {
-    Ok(views.html.nuevoPrecioRegistrado("Nuevo precio registrado"))
+  def newFoundPrice = Action {
+    Ok(views.html.newFoundPrice("Nuevo precio registrado"))
   }
   
-  def agregarPrecioRegistrado = Action { implicit request =>
-    val precio_registrado = precioRegistradoForm.bindFromRequest.get
-    val a, guardado = adapter.get_or_creat(precio_registrado)
+  def addFoundPrice = Action { implicit request =>
+    val found_price = foundPriceForm.bindFromRequest.get
+    val a, saved = adapter.get_or_creat(found_price)
     println(a)
-    println(precio_registrado)
-    println(guardado)
-    Redirect(routes.Application.getNegocios())
+    println(found_price)
+    println(saved)
+    Redirect(routes.Application.getFoundPrices())
   }
 
 }
