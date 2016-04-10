@@ -41,11 +41,9 @@ class Application extends Controller {
   
   def addShop = Action { implicit request =>
     val shop = shopForm.bindFromRequest.get
-    val a, saved = adapter.get_or_creat(shop)
-    println(a)
-    println(shop)
-    println(saved)
-    Redirect(routes.Application.getShops())
+    val (a, saved) = adapter.get_or_creat(shop)
+    val url = """\shops\"""+saved.get("_id").get.toString()
+    Ok(views.html.created(url))
   }
   
   def getFoundPrices = Action {
@@ -68,11 +66,9 @@ class Application extends Controller {
   
   def addFoundPrice = Action { implicit request =>
     val found_price = foundPriceForm.bindFromRequest.get
-    val a, saved = adapter.get_or_creat(found_price)
-    println(a)
-    println(found_price)
-    println(saved)
-    Redirect(routes.Application.getFoundPrices())
+    val (a, saved) = adapter.get_or_creat(found_price)
+    val url = """\found-prices\"""+saved.get("_id").get.toString()
+    Ok(views.html.created(url))
   }
 
 }
