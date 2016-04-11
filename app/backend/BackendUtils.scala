@@ -1,5 +1,7 @@
 package backend
 import scala.math._
+import com.mongodb.casbah.Imports._
+import com.mongodb.casbah.commons.MongoDBObjectBuilder
 
 class BackendUtils {
   
@@ -20,5 +22,11 @@ class BackendUtils {
   }
   
 }
+
+class BuilderRapper{
+  var builder = MongoDBObject.newBuilder
   
-  //def parseDouble(s: String) = try { Some(s.toDouble) } catch { case _ => None }
+} 
+
+  
+

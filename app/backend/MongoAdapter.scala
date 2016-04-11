@@ -1,5 +1,6 @@
 package backend
 import com.mongodb.casbah.Imports._
+import com.mongodb.casbah.commons.MongoDBObjectBuilder
 
 class MongoAdapter(db_host : String, db_port: Int, db_selected: String) {
   
@@ -9,6 +10,8 @@ class MongoAdapter(db_host : String, db_port: Int, db_selected: String) {
   
   var mongoClient = MongoClient(db_host, db_port)
   var mongoDB = mongoClient(db_selected)
+  
+  var builder = MongoDBObject.newBuilder
   
   override def toString(): String = "Mongo adapter conected to " + host + ":" + port + "/" + db_selected;
 
@@ -149,12 +152,36 @@ class MongoAdapter(db_host : String, db_port: Int, db_selected: String) {
     return shops
   }
   
-  def get_all_shops_mongo() : List[MongoDBObject] = {
-    
+  def get_all_shops_mongo() : List[MongoDBObject] = {   
     val cursor = mongoDB("shops").find()
     var shops = List[MongoDBObject]()
     for { x <- cursor} shops = x :: shops;
     return shops
   }
   
+  def get_all_shops_for(name:Option[String], location:Option[String], latitude:Option[Double], longitude:Option[Double], address:Option[String]) : List[Shop] = {
+    val mongo_shops = get_all_shops_for_mongo(name,location,latitude,longitude, address)
+    var shops = List[Shop]()
+    for { x <- mongo_shops} shops = toShop(x) :: shops;
+    return shops
+  }
+
+  def get_all_shops_for_mongo(name:Option[String], location:Option[String], latitude:Option[Double], longitude:Option[Double], address:Option[String]) : List[MongoDBObject] = {
+    val builderRapper = new BuilderRapper()
+    make_mongodb_builder("name",name,builderRapper)
+    make_mongodb_builder("location",location,builderRapper)
+    make_mongodb_builder("latitude",latitude,builderRapper)
+    make_mongodb_builder("longitude",longitude,builderRapper)
+    make_mongodb_builder("address",address,builderRapper)
+    val q = builderRapper.builder.result
+    val cursor = mongoDB("shops").find(q)
+    var shops = List[MongoDBObject]()
+    for { x <- cursor} shops = x :: shops;
+    return shops
+  }
+  
+  def make_mongodb_builder(parameterName:String, parameterValue: Option[_], builderRapeper : BuilderRapper) : BuilderRapper = parameterValue match {
+    case None => builderRapeper
+    case Some(parValue)    => builderRapeper.builder+= parameterName -> parValue; builderRapeper
+  }
 }

@@ -10,7 +10,7 @@ case class Shop(lat: Double, lng:Double, a_address:String, a_location:String, a_
   var location : String = a_location
   var name : String = a_name
   
-  override def toString(): String = "Shop: " + name +", " + location + " ("+latitude+","+longitude+")";
+  override def toString(): String = "Shop: " + name +", " + location + " ("+latitude+","+longitude+") !";
   
   def set_uuid(the_uuid:String) = uuid=the_uuid
 }

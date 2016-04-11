@@ -22,6 +22,10 @@ class Application extends Controller {
   def getShops = Action {
     Ok(com.mongodb.util.JSON.serialize(adapter.get_all_shops_mongo()))
   }
+  
+  def getShopsFor(name: Option[String], location: Option[String], latitude: Option[Double], longitude: Option[Double], address: Option[String]) = Action {
+    Ok(com.mongodb.util.JSON.serialize(adapter.get_all_shops_for(name,location,latitude,longitude, address)))
+  }
 
   val shopForm : Form[Shop] = Form (
     mapping(
