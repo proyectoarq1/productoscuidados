@@ -8,10 +8,12 @@ import play.api.libs.json._
 import play.api.data._
 import play.api.data.Forms._
 import play.api.data.format.Formats._ 
+import play.api.Play.current
 
 class Application extends Controller {
   
-  var adapter = new MongoAdapter("localhost",27017, "test")
+  var uri = current.configuration.getString("mongodb.uri.heroku").getOrElse(current.configuration.getString("mongodb.uri.local").get)
+  var adapter = new MongoAdapter(uri)
 
   
 
