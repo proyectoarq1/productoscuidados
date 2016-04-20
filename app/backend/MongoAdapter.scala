@@ -2,14 +2,10 @@ package backend
 import com.mongodb.casbah.Imports._
 import com.mongodb.casbah.commons.MongoDBObjectBuilder
 
-class MongoAdapter(mongo_uri: String) {//db_host : String, db_port: Int, db_selected: String) {
+class MongoAdapter(mongo_uri: String) {
   
-  //var host: String = db_host
-  //var port: Int = db_port
-  //var db: String = db_selected
   var uri: String = mongo_uri
   
-  //var mongoClient = MongoClient(db_host, db_port)
   val client_uri = MongoClientURI(uri)
   val mongoClient = MongoClient(client_uri)
   
