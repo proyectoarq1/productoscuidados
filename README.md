@@ -34,23 +34,29 @@ cd productoscuidados/
 >> run
 ```
 
-##Link a app en heroku:
-
-http://aqueous-dusk-80720.herokuapp.com/
-
 ## Consultas que se le puenden hacer a la api
 
-### Obtener negocios
+### Obtener todos los negocios
+
+```GET     /shops/all```                
+
+Devuelve un json con todos los shops que hay guardados en la base de datos.
+
+### Obtener negocios por características
 
 ```GET     /shops```                
 
-Devuelve un json con todos los shops que hay guardados en la base de datos.
+Parámetros: latitude, longitude, name, location, address
+Devuelve un json con todos los shops guardados en la base de datos que cumplen con las características ingresadas en los parámetros.
 
 ### Agregar negocio
 
 ```POST	/shops```
 
+Parámetros: latitude (*), longitude (*), name, location, address
 Crea un nuevo shop y lo agrega a la base de datos.
+
+(*) obligatorios
 
 ### Precios
 
@@ -62,10 +68,11 @@ Devuelve un json con todos los precios encontrados que hay guardados en la base 
 
 ```POST	/found-prices```
 
+Parámetros: product_id, price, shop_id, datetime
 Crea un nuevo precio encontrado y lo guarda en la base de datos.
 
 ## Formularios para testear post 
-Simplemente son formularios basicos con los campos a rellenar y cun botón para enviar el mismo y realizar el post a las anteriores url mencionadas.
+Simplemente son formularios basicos con los campos a rellenar y un botón para enviar el mismo y realizar el post a las anteriores url mencionadas.
 
 ### Get nuevo negocio
 ```GET 	/newshop```
@@ -76,7 +83,11 @@ Formulario para crear un nuevo negocio.
 ```GET 	/newfoundprice```
 Formulario para crear un nuevo precio encontrado.
 
+##Link a app en heroku:
 
+http://aqueous-dusk-80720.herokuapp.com/
+
+-------------------------------
 
 
 [MongoDB 3.2.4]: (https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/)

@@ -12,13 +12,13 @@ import play.api.Play.current
 
 class Application extends Controller {
   
-  var uri = current.configuration.getString("mongodb.uri.heroku").getOrElse(current.configuration.getString("mongodb.uri.local").get)
+  var uri = current.configuration.getString("mongodb.uri").get
   var adapter = new MongoAdapter(uri)
 
   
 
   def index = Action {
-    Ok(views.html.index("Your new application is reeady."))
+    Ok(views.html.index("Productos Cuidados API."))
   }
   
   def getShops = Action {
