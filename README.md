@@ -46,15 +46,15 @@ Devuelve un json con todos los shops que hay guardados en la base de datos.
 
 ```GET     /shops```                
 
-Parámetros: latitude, longitude, name, location, address
-Devuelve un json con todos los shops guardados en la base de datos que cumplen con las características ingresadas en los parámetros.
+Parámetros: latitude, longitude, name, location, address.  
+Devuelve un json con todos los shops guardados en la base de datos que cumplen con las características ingresadas en los parámetros.  
 
 ### Agregar negocio
 
 ```POST	/shops```
 
-Parámetros: latitude (*), longitude (*), name, location, address
-Crea un nuevo shop y lo agrega a la base de datos.
+Parámetros: latitude (\*), longitude (\*), name, location, address   
+Crea un nuevo shop y lo agrega a la base de datos.  
 
 (*) obligatorios
 
@@ -75,12 +75,14 @@ Crea un nuevo precio encontrado y lo guarda en la base de datos.
 Simplemente son formularios basicos con los campos a rellenar y un botón para enviar el mismo y realizar el post a las anteriores url mencionadas.
 
 ### Get nuevo negocio
-```GET 	/newshop```
+```GET 	/newshop```  
+
 Formulario para crear un nuevo negocio.
 
 
 ### Get nuevo precio encontrado
-```GET 	/newfoundprice```
+```GET 	/newfoundprice```  
+
 Formulario para crear un nuevo precio encontrado.
 
 ##Link a app en heroku:
@@ -91,6 +93,6 @@ http://aqueous-dusk-80720.herokuapp.com/
 
 
 [MongoDB 3.2.4]: (https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/)
-[Scala 2.11]:()
+[Scala 2.11]:(http://www.scala-lang.org/download/)
 [Play 2.4]:(https://www.playframework.com/documentation/2.4.x/Installing) 
 [git]:(https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
