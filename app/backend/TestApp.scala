@@ -9,7 +9,7 @@ object TestApp extends App {
   val (value, shoped) = a.get_or_create_shop(shop)
   shop.set_uuid(shoped.get("_id").get.toString())
   
-  var price = new FoundPrice ("codigo", 23.3, "3/4/2018",shoped.get("_id").get.toString() ) 
+  var price = new FoundPrice ("codigo", 23.3, "3/4/2018",shoped.get("_id").get.toString(),None) 
   
   println(shop)
   println(price)
@@ -29,7 +29,7 @@ object TestApp extends App {
   //println(current.configuration.getString("db.mongouri"))
   println("-----------------")
   
-  price = new FoundPrice ("codigo2", 23.3, "3/4/2018",shoped.get("_id").get.toString())
+  price = new FoundPrice ("codigo2", 23.3, "3/4/2018",shoped.get("_id").get.toString(), None)
   println(a.get_or_create_found_price(price))
   println(a.get_or_create_found_price(price))
   

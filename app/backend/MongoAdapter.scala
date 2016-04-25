@@ -19,6 +19,33 @@ class MongoAdapter(mongo_uri: String) {
   def insert_document(colection_name : String, document : MongoDBObject) = mongoDB(colection_name).insert(document);  
   def drop_collection(colection_name : String) = mongoDB(colection_name).drop();
 
+  def toProductDetail(produc_detail: MongoDBObject) : Option[ProductDetail] = {
+
+      val type_product_exist = produc_detail.getAs[String]("type_product")
+      if (!type_product_exist.isEmpty){
+      var type_of_capability : Option[String] = None
+      var type_of_container : Option[String] = None
+      val type_product = type_product_exist.get
+      val brand = produc_detail.getAs[String]("brand").get
+      val amount =  produc_detail.getAs[Double]("amount").get
+      
+      val type_capability = produc_detail.getAs[Option[String]]("type_of_capability")    
+      if (! type_capability.isEmpty) 
+      { type_of_capability = type_capability.get}
+      
+      val type_container = produc_detail.getAs[Option[String]]("type_of_container")    
+      if (! type_container.isEmpty) 
+      { type_of_container = type_container.get} 
+
+      val product = new ProductDetail(brand,type_product,amount,type_of_capability,type_of_container)
+      
+   
+    return Some(product) }
+      return None
+  }
+  
+ 
+  
   def toFoundPrice(found_price: MongoDBObject) : FoundPrice = {
 
     val product_id = found_price.getAs[String]("product_id").get
@@ -26,7 +53,12 @@ class MongoAdapter(mongo_uri: String) {
     val datetime =  found_price.getAs[String]("datetime").get
     val shop_id =  found_price.getAs[String]("shop_id").get
     
-    return new FoundPrice(product_id, price, datetime, shop_id)
+    var product_detail : Option[ProductDetail] = None
+    val product = found_price.getAs[MongoDBObject]("product_detail")
+    if (!(product.isEmpty))
+      product_detail = toProductDetail(product.get);
+    
+    return new FoundPrice(product_id, price, datetime, shop_id, product_detail)
     
   }
   
@@ -56,7 +88,16 @@ class MongoAdapter(mongo_uri: String) {
     case o:FoundPrice => MongoDBObject("product_id" -> o.product_id,
                                              "price" -> o.price,
                                              "shop_id" -> o.shop_id,
-                                             "datetime" -> o.datetime)
+                                             "datetime" -> o.datetime,
+                                             "product_detail" -> toMongoDBObjetc(o.product_detail))
+    
+    case Some(product : ProductDetail) => MongoDBObject("brand" -> product.brand,
+                                          "type_product" -> product.type_product,
+                                          "amount" -> product.amount,
+                                          "type_of_capability" -> product.type_of_capability,
+                                          "type_of_container" -> product.type_of_container)
+    case None => MongoDBObject()
+
  }
   
   def delete(o : Object) : Boolean = {
@@ -95,7 +136,7 @@ class MongoAdapter(mongo_uri: String) {
 }
   
   def get_or_create_shop(shop : Shop) : (Boolean,MongoDBObject) = {
-    
+    println(shop.address)
     val query = MongoDBObject("address" -> shop.address,
                               "name" -> shop.name)
     val result = mongoDB("shops").findOne(query) 
@@ -121,7 +162,7 @@ class MongoAdapter(mongo_uri: String) {
       
       case Some(dbObject) => return (false,dbObject)
       case None => val shop_mongo_object = toMongoDBObjetc(found_price);
-                   insert_document("found_prices",toMongoDBObjetc(found_price)); 
+                   insert_document("found_prices",shop_mongo_object); 
                    return (true,shop_mongo_object)
       
     }

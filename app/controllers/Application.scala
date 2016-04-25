@@ -55,13 +55,20 @@ class Application extends Controller {
   def getFoundPrices = Action {
     Ok(com.mongodb.util.JSON.serialize(adapter.get_all_found_prices_mongo()))
   }
-  
+
   val foundPriceForm : Form[FoundPrice] = Form (
     mapping(
       "product_id"-> text,
       "price"-> of[Double],
       "datetime"-> text,
-      "shop_id" -> text
+      "shop_id" -> text,
+      "product_detail" -> optional(mapping(
+        "brand" -> text,
+        "type_product" -> text,
+        "amount" -> of[Double],
+        "type_of_capability" -> optional(text),
+        "type_of_container" -> optional(text)
+    )(ProductDetail.apply)(ProductDetail.unapply))
     )(FoundPrice.apply)(FoundPrice.unapply)
     
   )
@@ -72,8 +79,11 @@ class Application extends Controller {
   
   def addFoundPrice = Action { implicit request =>
     val found_price = foundPriceForm.bindFromRequest.get
+    println(request.body)
+    println(found_price.product_detail)
     val (a, saved) = adapter.get_or_creat(found_price)
     val url = """\found-prices\"""+saved.get("_id").get.toString()
+
     Ok(views.html.created(url))
   }
 
