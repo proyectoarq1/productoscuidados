@@ -171,15 +171,16 @@ class MongoAdapter(mongo_uri: String) {
   }
 
   def get_all_found_prices() : List[FoundPrice] = {
-    val found_prices_mongo = get_all_found_prices_mongo()
+    val found_prices_mongo = get_all_found_prices_mongo(None,None)
     var found_prices = List[FoundPrice]()
     for { x <- found_prices_mongo} found_prices = toFoundPrice(x) :: found_prices;
     return found_prices
   }
   
-  def get_all_found_prices_mongo() : List[MongoDBObject] = {
-    
-    val cursor = mongoDB("found_prices").find()
+  def get_all_found_prices_mongo(limit:Option[Int],offset:Option[Int]) : List[MongoDBObject] = {
+    var limitt = limit.getOrElse(100)
+    if( limitt > 100 ) limitt = 100;
+    val cursor = mongoDB("found_prices").find().sort( MongoDBObject( "_id" -> -1 )).skip( offset.getOrElse(0) ).limit( limitt );
     var found_prices = List[MongoDBObject]()
     for { x <- cursor} found_prices = x :: found_prices;
     return found_prices
@@ -200,22 +201,31 @@ class MongoAdapter(mongo_uri: String) {
     return shops
   }
   
-  def get_all_shops_for(name:Option[String], location:Option[String], latitude:Option[Double], longitude:Option[Double], address:Option[String]) : List[Shop] = {
-    val mongo_shops = get_all_shops_for_mongo(name,location,latitude,longitude, address)
+  def get_all_shops_mongo_for(name:Option[String], location:Option[String], latitude:Option[Double], longitude:Option[Double], address:Option[String], limit:Option[Int],offset:Option[Int]) : List[MongoDBObject] = {
+    val mongo_shops = get_all_shops_for_mongo(name,location,latitude,longitude, address, limit, offset)
+    var shops = List[MongoDBObject]()
+    for { x <- mongo_shops} shops = x :: shops;
+    return shops
+  }
+  
+  def get_all_shops_for(name:Option[String], location:Option[String], latitude:Option[Double], longitude:Option[Double], address:Option[String], limit:Option[Int],offset:Option[Int]) : List[Shop] = {
+    val mongo_shops = get_all_shops_for_mongo(name,location,latitude,longitude, address, limit, offset)
     var shops = List[Shop]()
     for { x <- mongo_shops} shops = toShop(x) :: shops;
     return shops
   }
 
-  def get_all_shops_for_mongo(name:Option[String], location:Option[String], latitude:Option[Double], longitude:Option[Double], address:Option[String]) : List[MongoDBObject] = {
+  def get_all_shops_for_mongo(name:Option[String], location:Option[String], latitude:Option[Double], longitude:Option[Double], address:Option[String], limit:Option[Int],offset:Option[Int]) : List[MongoDBObject] = {
     val builderRapper = new BuilderRapper()
+    var limitt = limit.getOrElse(100)
+    if( limitt > 100 ) limitt = 100;
     make_mongodb_builder("name",name,builderRapper)
     make_mongodb_builder("location",location,builderRapper)
     make_mongodb_builder("latitude",latitude,builderRapper)
     make_mongodb_builder("longitude",longitude,builderRapper)
     make_mongodb_builder("address",address,builderRapper)
     val q = builderRapper.builder.result
-    val cursor = mongoDB("shops").find(q)
+    val cursor = mongoDB("shops").find(q).sort( MongoDBObject( "_id" -> -1 )).skip( offset.getOrElse(0) ).limit( limitt );
     var shops = List[MongoDBObject]()
     for { x <- cursor} shops = x :: shops;
     return shops
@@ -225,4 +235,22 @@ class MongoAdapter(mongo_uri: String) {
     case None => builderRapeper
     case Some(parValue)    => builderRapeper.builder+= parameterName -> parValue; builderRapeper
   }
+  
+  def get_by_id_from_collection(id: String,collection:String) : DBObject =  {
+    val oid = new ObjectId(id)
+    val query : DBObject = MongoDBObject("_id" -> oid)
+    val cursor = mongoDB(collection).findOne(query)
+    return cursor.getOrElse(DBObject())
+    
+  }
+  
+  def get_shop_by_id(id: String) : DBObject = {
+    return get_by_id_from_collection(id,"shops")
+    
+  }
+  
+  def get_found_price_by_id(id: String) : DBObject = {
+    return get_by_id_from_collection(id,"found_prices")   
+  }
+  
 }

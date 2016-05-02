@@ -9,6 +9,9 @@ import play.api.data._
 import play.api.data.Forms._
 import play.api.data.format.Formats._ 
 import play.api.Play.current
+import play.api.libs.json._
+import scala.util.parsing.json.JSON._
+
 
 class Application extends Controller {
   
@@ -25,8 +28,17 @@ class Application extends Controller {
     Ok(com.mongodb.util.JSON.serialize(adapter.get_all_shops_mongo()))
   }
   
-  def getShopsFor(name: Option[String], location: Option[String], latitude: Option[Double], longitude: Option[Double], address: Option[String]) = Action {
-    Ok(com.mongodb.util.JSON.serialize(adapter.get_all_shops_for(name,location,latitude,longitude, address)))
+  def getShopsFor(name: Option[String], location: Option[String], latitude: Option[Double], longitude: Option[Double], address: Option[String], limit:Option[Int],offset:Option[Int]) = Action {
+    val offset_query = offset.getOrElse(0)
+    var limitt = limit.getOrElse(100)
+    if( limitt > 100 ) limitt = 100;
+    val result = com.mongodb.util.JSON.serialize(adapter.get_all_shops_mongo_for(name,location,latitude,longitude, address, limit, offset))
+    val response = Json.obj("paging" -> Json.obj("offset" -> offset_query,
+                                    "limit" -> offset_query,
+                                     "total" -> 0),
+                             "items" -> Json.parse(result))
+    
+    Ok(response)
   }
 
   val shopForm : Form[Shop] = Form (
@@ -52,8 +64,20 @@ class Application extends Controller {
     Ok(views.html.created(url))
   }
   
-  def getFoundPrices = Action {
-    Ok(com.mongodb.util.JSON.serialize(adapter.get_all_found_prices_mongo()))
+  def getFoundPrices(limit:Option[Int],offset:Option[Int]) = Action {
+    val offset_query = offset.getOrElse(0)
+    var limitt = limit.getOrElse(100)
+    if( limitt > 100 ) limitt = 100;
+    val result = com.mongodb.util.JSON.serialize(adapter.get_all_found_prices_mongo(limit,offset))
+   
+    
+    val response = Json.obj("paging" -> Json.obj("offset" -> offset_query,
+                                    "limit" -> offset_query,
+                                     "total" -> 0),
+                             "items" -> Json.parse(result))
+    
+   
+    Ok(response)
   }
 
   val foundPriceForm : Form[FoundPrice] = Form (
@@ -85,6 +109,19 @@ class Application extends Controller {
     val url = """\found-prices\"""+saved.get("_id").get.toString()
 
     Ok(views.html.created(url))
+  }
+  
+  def showShop(id: String) = Action {
+    val shop = adapter.get_shop_by_id(id)
+    Ok(com.mongodb.util.JSON.serialize(shop))
+    
+  }
+  
+  def showFounfPrice(id: String) = Action {
+    val found_price = adapter.get_found_price_by_id(id)
+    Ok(com.mongodb.util.JSON.serialize(found_price))
+    //return found_price
+    
   }
 
 }

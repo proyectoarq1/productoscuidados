@@ -1,5 +1,6 @@
 package backend
 import com.mongodb.casbah.Imports._
+import play.api.libs.json.Json._
 
 case class Shop(latitude: Double, longitude:Double, address:String, location:String, name:String)
 {
@@ -8,4 +9,5 @@ case class Shop(latitude: Double, longitude:Double, address:String, location:Str
   override def toString(): String = "Shop: " + name +", " + location + " ("+latitude+","+longitude+") !";
   
   def set_uuid(the_uuid:String) = uuid=the_uuid
+  
 }

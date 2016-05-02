@@ -15,7 +15,7 @@ GET 	/newshop				controllers.Application.newShop
 POST	/shops				controllers.Application.addShop
 
 # Precios
-GET     /found-prices                   controllers.Application.getFoundPrices
+GET     /found-prices                   controllers.Application.getFoundPrices(limit:Option[Int],offset:Option[Int])
 
 #Get nuevo negocio
 GET 	/newfoundprice			controllers.Application.newFoundPrice
@@ -23,8 +23,15 @@ GET 	/newfoundprice			controllers.Application.newFoundPrice
 #Agregar negocio
 POST	/found-prices				controllers.Application.addFoundPrice
 
+#Ver detalle del shop con ese id
+GET   /shops/:id          controllers.Application.showShop(id: String)
+
+#Ver detalle del shop con ese id
+GET   /found-prices/:id          controllers.Application.showFounfPrice(id: String)
+
+
 # Busca negocios por distintas caracteristicas
-GET   /shops         	 controllers.Application.getShopsFor(name:Option[String],location:Option[String],latitude:Option[Double],longitude:Option[Double],address:Option[String])
+GET   /shops         	 controllers.Application.getShopsFor(name:Option[String],location:Option[String],latitude:Option[Double],longitude:Option[Double],address:Option[String],limit:Option[Int],offset:Option[Int])
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
