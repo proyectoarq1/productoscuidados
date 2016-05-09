@@ -11,6 +11,7 @@ import play.api.data.format.Formats._
 import play.api.Play.current
 import play.api.libs.json._
 import scala.util.parsing.json.JSON._
+import play.api.mvc._
 
 
 class Application extends Controller {
@@ -54,14 +55,17 @@ class Application extends Controller {
   )
   
   def newShop = Action {
+
     Ok(views.html.newShop("Nuevo negocio"))
+    
   }
   
   def addShop = Action { implicit request =>
     val shop = shopForm.bindFromRequest.get
     val (a, saved) = adapter.get_or_creat(shop)
-    val url = """\shops\"""+saved.get("_id").get.toString()
-    Ok(views.html.created(url))
+    val url = """/shops/"""+saved.get("_id").get.toString()
+    println(url)
+    Status(201)(views.html.newShop("Nuevo negocio")).withHeaders("location" -> url)
   }
   
   def getFoundPrices(limit:Option[Int],offset:Option[Int]) = Action {
