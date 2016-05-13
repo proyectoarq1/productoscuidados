@@ -1,8 +1,25 @@
+import com.typesafe.sbt.packager.docker._
+import AssemblyKeys._
+
 name := """play-scala-2.4"""
 
 version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
+
+enablePlugins(JavaAppPackaging)
+
+enablePlugins(DockerPlugin)
+
+dockerCommands := Seq( 
+  Cmd("FROM", "beevelop/java:latest"),
+  Cmd("WORKDIR","/opt/docker"),
+  Cmd("ADD","opt /opt"),
+  Cmd("RUN","[\"chown\", \"-R\", \"daemon:daemon\", \".\"]"),
+  Cmd("USER","daemon"),
+  Cmd("ENTRYPOINT","[\"bin/play-scala-2-4\", \"-Dconfig.resource=application.docker.conf\", \"-Dlogger.resource=logback.xml\"]"),
+  Cmd("CMD", "/usr/sbin/init")
+)
 
 scalaVersion := "2.11.8"
 autoScalaLibrary := false
@@ -27,3 +44,16 @@ fork in run := true
 //Variables de heroku
 herokuAppName in Compile := "aqueous-dusk-80720"
 herokuJdkVersion in Compile := "1.8"
+
+assemblySettings
+
+mainClass in assembly := Some("play.core.server.NettyServer")
+
+fullClasspath in assembly += Attributed.blank(PlayKeys.playPackageAssets.value)
+
+libraryDependencies ~= { _ map {
+  case m if m.organization == "com.typesafe.play" =>
+    m.exclude("commons-logging", "commons-logging").
+      exclude("com.typesafe.play", "sbt-link")
+  case m => m
+}}
