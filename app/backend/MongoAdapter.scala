@@ -1,9 +1,12 @@
 package backend
 import com.mongodb.casbah.Imports._
 import com.mongodb.casbah.commons.MongoDBObjectBuilder
+import play.api.Logger
+
+
 
 class MongoAdapter(mongo_uri: String) {
-  
+
   var uri: String = mongo_uri
   
   val client_uri = MongoClientURI(uri)
@@ -107,13 +110,14 @@ class MongoAdapter(mongo_uri: String) {
       case o:FoundPrice => delete_found_price(o)
     }
    val deleted = result match {
-      case Some(l) => true
-      case None => false 
+      case Some(l) => Logger.info("[MONGO ADAPTER] Deleted was succesfull"); true
+      case None => Logger.info("[MONGO ADAPTER] There was no coinciden to delet"); false 
     }
    return deleted
  }
   
   def delete_shop(shop : Shop) : Option[DBObject] = {
+    Logger.info("[MONGO ADAPTER] Deleting Shop: " + shop.toString())
     val query = MongoDBObject("address" -> shop.address,
                               "name" -> shop.name)
     val result = mongoDB("shops").findAndRemove(query)
@@ -121,7 +125,7 @@ class MongoAdapter(mongo_uri: String) {
   }
   
   def delete_found_price(found_price : FoundPrice) : Option[DBObject] = {
-    
+    Logger.info("[MONGO ADAPTER] Deleting Found-Price: " + found_price.toString())
     val query = MongoDBObject("product_id" -> found_price.product_id,
                               "shop_id" -> found_price.shop_id) 
     
@@ -131,20 +135,24 @@ class MongoAdapter(mongo_uri: String) {
   }
   
   def get_or_creat(o : Object) : (Boolean,MongoDBObject) = o match {  
+    
      case o: Shop => get_or_create_shop(o)
      case o: FoundPrice => get_or_create_found_price(o)
 }
   
   def get_or_create_shop(shop : Shop) : (Boolean,MongoDBObject) = {
-    println(shop.address)
+    
+    Logger.info("[MONGO ADAPTER] Getting or creating Shop: " + shop.toString());
     val query = MongoDBObject("address" -> shop.address,
                               "name" -> shop.name)
     val result = mongoDB("shops").findOne(query) 
    
     result match {
       
-      case Some(dbObject) => return (false,dbObject)
-      case None => val shop_mongo_object = toMongoDBObjetc(shop);
+      case Some(dbObject) => Logger.info("[MONGO ADAPTER] The Shop was created.");
+                             return (false,dbObject)
+      case None => Logger.info("[MONGO ADAPTER] Returning the Shop that was already created.");
+                   val shop_mongo_object = toMongoDBObjetc(shop);
                    insert_document("shops",shop_mongo_object); 
                    return (true,shop_mongo_object)
       
@@ -153,15 +161,17 @@ class MongoAdapter(mongo_uri: String) {
   }
   
   def get_or_create_found_price(found_price : FoundPrice) : (Boolean,MongoDBObject) = {
-    
+     Logger.info("[MONGO ADAPTER] Getting or creating Found-Price: " + found_price.toString());
     val query = MongoDBObject("product_id" -> found_price.product_id,
                               "shop_id" -> found_price.shop_id) 
 
     val result = mongoDB("found_prices").findOne(query)  
     result match {
       
-      case Some(dbObject) => return (false,dbObject)
-      case None => val shop_mongo_object = toMongoDBObjetc(found_price);
+      case Some(dbObject) => Logger.info("[MONGO ADAPTER] The Found-Price was created.");
+                             return (false,dbObject)
+      case None => Logger.info("[MONGO ADAPTER] Returning TH Found-Price that was already created.");
+                   val shop_mongo_object = toMongoDBObjetc(found_price);
                    insert_document("found_prices",shop_mongo_object); 
                    return (true,shop_mongo_object)
       
@@ -178,6 +188,7 @@ class MongoAdapter(mongo_uri: String) {
   }
   
   def get_all_found_prices_mongo(limit:Option[Int],offset:Option[Int]) : List[MongoDBObject] = {
+    Logger.info("[MONGO ADAPTER] Getting All Found-Prices.");
     var limitt = limit.getOrElse(100)
     if( limitt > 100 ) limitt = 100;
     val cursor = mongoDB("found_prices").find().sort( MongoDBObject( "_id" -> -1 )).skip( offset.getOrElse(0) ).limit( limitt );
@@ -194,7 +205,8 @@ class MongoAdapter(mongo_uri: String) {
     return shops
   }
   
-  def get_all_shops_mongo() : List[MongoDBObject] = {   
+  def get_all_shops_mongo() : List[MongoDBObject] = {
+    Logger.info("[MONGO ADAPTER] Getting All Shops.");
     val cursor = mongoDB("shops").find()
     var shops = List[MongoDBObject]()
     for { x <- cursor} { x.put("id", x.asInstanceOf[MongoDBObject].get("_id").get.toString()); x.remove("_id"); shops = x :: shops}
@@ -245,11 +257,14 @@ class MongoAdapter(mongo_uri: String) {
   }
   
   def get_shop_by_id(id: String) : DBObject = {
+    Logger.info("[MONGO ADAPTER] Getting Shop by id. " + id);
     return get_by_id_from_collection(id,"shops")
+    
     
   }
   
   def get_found_price_by_id(id: String) : DBObject = {
+    Logger.info("[MONGO ADAPTER] Getting Found-Price by id. " + id);
     return get_by_id_from_collection(id,"found_prices")   
   }
   

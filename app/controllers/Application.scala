@@ -33,6 +33,7 @@ class Application extends Controller {
     val offset_query = offset.getOrElse(0)
     var limitt = limit.getOrElse(100)
     if( limitt > 100 ) limitt = 100;
+    Logger.info("[SHOPS] Getting filtered Shops with limit: " + limitt.toString + ", offset: " + offset_query.toString );
     val result = com.mongodb.util.JSON.serialize(adapter.get_all_shops_mongo_for(name,location,latitude,longitude, address, limit, offset))
     val response = Json.obj("paging" -> Json.obj("offset" -> offset_query,
                                     "limit" -> offset_query,
@@ -61,6 +62,8 @@ class Application extends Controller {
   }
   
   def addShop = Action { implicit request =>
+    Logger.info("[SHOPS] Creating new Shop");
+
     val shop = shopForm.bindFromRequest.get
     val (a, saved) = adapter.get_or_creat(shop)
     val url = """/shops/"""+saved.get("_id").get.toString()
@@ -72,6 +75,7 @@ class Application extends Controller {
     val offset_query = offset.getOrElse(0)
     var limitt = limit.getOrElse(100)
     if( limitt > 100 ) limitt = 100;
+    Logger.info("[FOUND-PRICES] Getting Found-Prices with limit: " + limitt.toString + ", offset: " + offset_query.toString );
     val result = com.mongodb.util.JSON.serialize(adapter.get_all_found_prices_mongo(limit,offset))
    
     
@@ -106,6 +110,7 @@ class Application extends Controller {
   }
   
   def addFoundPrice = Action { implicit request =>
+    Logger.info("[FOUND-PRICES] Creating new Found-Price");
     val found_price = foundPriceForm.bindFromRequest.get
     println(request.body)
     println(found_price.product_detail)
@@ -116,12 +121,14 @@ class Application extends Controller {
   }
   
   def showShop(id: String) = Action {
+    Logger.info("[SHOPS] Showing Shop location with id: " + id );
     val shop = adapter.get_shop_by_id(id)
     Ok(com.mongodb.util.JSON.serialize(shop))
     
   }
   
   def showFounfPrice(id: String) = Action {
+    Logger.info("[FOUND-PRICES] Showing Found-Price location with id: " + id);
     val found_price = adapter.get_found_price_by_id(id)
     Ok(com.mongodb.util.JSON.serialize(found_price))
     //return found_price
