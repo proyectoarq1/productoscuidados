@@ -17,7 +17,7 @@ dockerCommands := Seq(
   Cmd("ADD","opt /opt"),
   Cmd("RUN","[\"chown\", \"-R\", \"daemon:daemon\", \".\"]"),
   Cmd("USER","daemon"),
-  Cmd("ENTRYPOINT","[\"bin/play-scala-2-4\", \"-Dconfig.resource=application.docker.conf\", \"-Dlogger.resource=logback.xml\"]"),
+  Cmd("ENTRYPOINT","[\"bin/play-scala-2-4\",\"-J-javaagent:conf/newrelic.jar\" ,\"-Dconfig.resource=application.docker.conf\", \"-Dlogger.resource=logback.xml\"]"),
   Cmd("CMD", "/usr/sbin/init")
 )
 
