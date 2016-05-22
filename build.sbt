@@ -29,7 +29,9 @@ libraryDependencies ++= Seq(
   cache,
   ws,
   specs2 % Test,
-  "org.mongodb" %% "casbah" % "3.1.1"
+  "org.mongodb" %% "casbah" % "3.1.1",
+  "com.newrelic.agent.java" % "newrelic-agent" % "3.25.0",
+  "com.newrelic.agent.java" % "newrelic-api" % "3.25.0"
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
