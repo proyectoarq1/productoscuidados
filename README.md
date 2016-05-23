@@ -89,13 +89,16 @@ Formulario para crear un nuevo precio encontrado.
 ## Docker
 La aplicación tiene la opción de poder correr con docker sobre la imagen base "beevelop/java:latest"(Ubuntu 15.10-java8) y con una base de datos mongo. Para esto se generan 2 imágenes: Una para la base de datos y otra para la aplicación en si. Luego estas imágenes son linkeadas.
 Activator tiene integración con docker por lo que te deja customizar la imagen en el build.sbt de forma amena. Además de darte comandos para ayudarte a generarla:
-* activator docker:stage - evalúa el build.sbt y genera el dockerfile correspondiente.
-* activator docker:publishLocal - genera la imágen docker apartir del docker file antes generado.
-
+```
+activator docker:stage - evalúa el build.sbt y genera el dockerfile correspondiente.
+activator docker:publishLocal - genera la imágen docker apartir del docker file antes generado.
+```
 Hay más comandos, pero estos 2 son los que particularmente nosotros usamos.
 
 Para correr la app en docker sólo hay que ejecutar el script:
-* sh docker-play mongodbimage
+```
+sh docker-play mongodbimage
+```
 donde "mongodbimage" es el nombre que va a tener la imagen de la base mongo(esto se parametrizó para hacer pruebas y así poder usar la misma imagen mongo para distintas imágenes de la aplicación).
 
 Una vez ejecutado ese script la aplicación ya está corriendo.
