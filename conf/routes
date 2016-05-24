@@ -6,32 +6,32 @@
 GET     /                           controllers.Application.index
 
 # Trae todos los Negocios
-GET     /shops/all                 controllers.Application.getShops
+GET     /api/v1/shops/all                 controllers.Application.getShops
 
 #Get nuevo negocio
-GET 	/newshop				controllers.Application.newShop
+GET 	/api/v1/newshop				controllers.Application.newShop
 
 #Agregar negocio
-POST	/shops				controllers.Application.addShop
+POST	/api/v1/shops				controllers.Application.addShop
 
 # Precios
-GET     /found-prices                   controllers.Application.getFoundPrices(limit:Option[Int],offset:Option[Int])
+GET     /api/v1/found-prices                   controllers.Application.getFoundPrices(limit:Option[Int],offset:Option[Int])
 
 #Get nuevo negocio
-GET 	/newfoundprice			controllers.Application.newFoundPrice
+GET 	/api/v1/newfoundprice			controllers.Application.newFoundPrice
 
 #Agregar negocio
-POST	/found-prices				controllers.Application.addFoundPrice
+POST	/api/v1/found-prices				controllers.Application.addFoundPrice
 
 #Ver detalle del shop con ese id
-GET   /shops/:id          controllers.Application.showShop(id: String)
+GET   /api/v1/shops/:id          controllers.Application.showShop(id: String)
 
 #Ver detalle del shop con ese id
-GET   /found-prices/:id          controllers.Application.showFounfPrice(id: String)
+GET   /api/v1/found-prices/:id          controllers.Application.showFounfPrice(id: String)
 
 
 # Busca negocios por distintas caracteristicas
-GET   /shops         	 controllers.Application.getShopsFor(name:Option[String],location:Option[String],latitude:Option[Double],longitude:Option[Double],address:Option[String],limit:Option[Int],offset:Option[Int])
+GET   /api/v1/shops         	 controllers.Application.getShopsFor(name:Option[String],location:Option[String],latitude:Option[Double],longitude:Option[Double],address:Option[String],limit:Option[Int],offset:Option[Int])
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

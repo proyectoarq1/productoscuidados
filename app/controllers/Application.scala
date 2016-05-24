@@ -66,7 +66,7 @@ class Application extends Controller {
 
     val shop = shopForm.bindFromRequest.get
     val (a, saved) = adapter.get_or_creat(shop)
-    val url = """/shops/"""+saved.get("_id").get.toString()
+    val url = """\api\v1\shops\"""+saved.get("_id").get.toString()
     println(url)
     Status(201)(views.html.newShop("Nuevo negocio")).withHeaders("location" -> url)
   }
@@ -115,7 +115,7 @@ class Application extends Controller {
     println(request.body)
     println(found_price.product_detail)
     val (a, saved) = adapter.get_or_creat(found_price)
-    val url = """\found-prices\"""+saved.get("_id").get.toString()
+    val url = """\api\v1\found-prices\"""+saved.get("_id").get.toString()
 
     Ok(views.html.created(url))
   }
