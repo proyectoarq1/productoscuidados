@@ -34,6 +34,8 @@ libraryDependencies ++= Seq(
   "com.newrelic.agent.java" % "newrelic-api" % "3.25.0"
 )
 
+javaOptions ++= Seq("-javaagent:target/universal/stage/lib/com.newrelic.agent.java.newrelic-agent-3.25.0.jar -Dnewrelic.config.file=conf/newrelic.yml")
+
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 resolvers += "fwbrasil.net" at "http://repo1.maven.org/maven2"
 
