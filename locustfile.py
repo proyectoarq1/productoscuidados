@@ -10,15 +10,31 @@ import json
 #1)+2)xn
 #1)+3)+2)xn
 from pymongo import MongoClient
+import os
 
-def crear_falsos_shops():
-    client = MongoClient()
-    db = client['test']
-    coll = db['shops']
-
-    bera = coll.insert_one({"latitude" : 1.2, "longitude" : 30.8, "address" : "Av Bergara 2323", "location" : "Berazategui", "name" : "Los 12 hermanos" })
-    bernal = coll.insert_one({"latitude" : 1.7, "longitude" : 78.5, "address" : "Calle falsa 123", "location" : "Bernal", "name" : "Coto" })
-    lanus = coll.insert_one({ "latitude" : 3.3, "longitude" : 324.8, "address" : "Av. Corrientes 1233", "location" : "Lanus", "name" : "Econo" })
+def crear_falsos_shops(l):
+  
+    #BERA
+    l.client.post('/api/v1/shops',
+        {'latitude': 1.2,
+        'longitude': 30.8,
+        'address':"Av Bergara 2323", 
+        'name': "Los 12 hermanos",
+        'location': "Berazategui"})
+    #BERNAL
+    l.client.post('/api/v1/shops',
+        {'latitude': 1.7,
+        'longitude': 78.5,
+        'address':"Calle falsa 123", 
+        'name': "Coto",
+        'location': "Bernal"}) 
+    #LANUS
+    l.client.post('/api/v1/shops',
+        {'latitude': 3.3,
+        'longitude': 324.8,
+        'address':"Av. Corrientes 1233", 
+        'name': "Econo",
+        'location': "Lanus"})
 
     #bera_id = str(bera.inserted_id)
     #bernal_id = str(bernal.inserted_id)
@@ -30,8 +46,10 @@ import random
 def user1(l):
     location = random.choice(["Berazategui","Lanus","Bernal"])
     shops_items = json.loads(shops(l,location).content)['items']
+    print len(shops_items)
     if len(shops_items) == 0:
-        crear_falsos_shops()
+        print "HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        crear_falsos_shops(l)
     shop_id = json.loads(shops(l,location).content)['items'][0]["id"]
     crear_found_price(l,shop_id)
 
@@ -77,8 +95,10 @@ def crear_shop(l):
 
 def shops(l,location=None):
     if location == None:
-        l.client.get("/api/v1/shops")
+        return l.client.get("/api/v1/shops")
     else:
+        print "locationnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
+        print location
         return l.client.get("/api/v1/shops?location="+location)
 
 

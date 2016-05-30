@@ -39,20 +39,20 @@ cd productoscuidados/
 
 ### Obtener todos los negocios
 
-```GET     /shops/all```                
+```GET     /api/v1/shops/all```                
 
 Devuelve un json con todos los shops que hay guardados en la base de datos.
 
 ### Obtener negocios por características
 
-```GET     /shops```                
+```GET     /api/v1/shops```                
 
 Parámetros: latitude, longitude, name, location, address.  
 Devuelve un json con todos los shops guardados en la base de datos que cumplen con las características ingresadas en los parámetros.  
 
 ### Agregar negocio
 
-```POST	/shops```
+```POST	/api/v1/shops```
 
 Parámetros: latitude (\*), longitude (\*), name, location, address   
 Crea un nuevo shop y lo agrega a la base de datos.  
@@ -61,13 +61,13 @@ Crea un nuevo shop y lo agrega a la base de datos.
 
 ### Precios
 
-```GET     /found-prices```
+```GET     /api/v1/found-prices```
 
 Devuelve un json con todos los precios encontrados que hay guardados en la base de datos.
 
 ### Agregar precio econtrado
 
-```POST	/found-prices```
+```POST	   /api/v1/found-prices```
 
 Parámetros: product_id, price, shop_id, datetime
 Crea un nuevo precio encontrado y lo guarda en la base de datos.
@@ -76,13 +76,13 @@ Crea un nuevo precio encontrado y lo guarda en la base de datos.
 Simplemente son formularios basicos con los campos a rellenar y un botón para enviar el mismo y realizar el post a las anteriores url mencionadas.
 
 ### Get nuevo negocio
-```GET 	/newshop```  
+```GET 	   /api/v1/newshop```  
 
 Formulario para crear un nuevo negocio.
 
 
 ### Get nuevo precio encontrado
-```GET 	/newfoundprice```  
+```GET 	  /api/v1/newfoundprice```  
 
 Formulario para crear un nuevo precio encontrado.
 
