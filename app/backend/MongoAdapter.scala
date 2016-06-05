@@ -191,9 +191,12 @@ class MongoAdapter(mongo_uri: String) {
     Logger.info("[MONGO ADAPTER] Getting All Found-Prices.");
     var limitt = limit.getOrElse(100)
     if( limitt > 100 ) limitt = 100;
+
     val cursor = mongoDB("found_prices").find().sort( MongoDBObject( "_id" -> -1 )).skip( offset.getOrElse(0) ).limit( limitt );
+    var list_intermediat = List[MongoDBObject]()
+    for { x <- cursor} list_intermediat = x :: list_intermediat;
     var found_prices = List[MongoDBObject]()
-    for { x <- cursor} { x.put("id", x.asInstanceOf[MongoDBObject].get("_id").get.toString()); x.remove("_id"); found_prices = x :: found_prices}
+    for { x <- list_intermediat} { x.put("id", x.asInstanceOf[MongoDBObject].get("_id").get.toString()); x.remove("_id"); found_prices = x :: found_prices}
     return found_prices
     
   }
