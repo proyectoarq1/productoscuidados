@@ -29,7 +29,15 @@ class ShopController extends Controller {
     var limitt = limit.getOrElse(100)
     if( limitt > 100 ) limitt = 100;
     Logger.info("[SHOPS] Getting filtered Shops with limit: " + limitt.toString + ", offset: " + offset_query.toString );
-    val result = com.mongodb.util.JSON.serialize(adapter.get_all_shops_mongo_for(name,location,latitude,longitude, address, limit, offset))
+    val key : String = name.toString() + location.toString() + latitude.toString() + longitude.toString() + address.toString() +  limit.toString() + offset.toString() 
+    var result_cache = Cache.search_result(key)
+    var result : String = ""
+    if (result_cache.isEmpty)
+    {
+      result = com.mongodb.util.JSON.serialize(adapter.get_all_shops_mongo_for(name,location,latitude,longitude, address, limit, offset))
+      Cache.save_result(key, result)
+    }
+    else {result = result_cache.get}
     val response = Json.obj("paging" -> Json.obj("offset" -> offset_query,
                                     "limit" -> offset_query,
                                      "total" -> 0),

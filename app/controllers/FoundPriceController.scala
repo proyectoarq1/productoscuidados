@@ -26,7 +26,15 @@ class FoundPriceController extends Controller {
     var limitt = limit.getOrElse(100)
     if( limitt > 100 ) limitt = 100;
     Logger.info("[FOUND-PRICES] Getting Found-Prices with limit: " + limitt.toString + ", offset: " + offset_query.toString );
-    val result = com.mongodb.util.JSON.serialize(adapter.get_all_found_prices_mongo(limit,offset))
+    val key : String =  limit.toString() + offset.toString()
+    var result_cache = Cache.search_result(key)
+    var result : String = ""
+    if (result_cache.isEmpty)
+    {
+      result = com.mongodb.util.JSON.serialize(adapter.get_all_found_prices_mongo(limit,offset))
+      Cache.save_result(key, result)
+    }
+    else {result = result_cache.get}
    
     
     val response = Json.obj("paging" -> Json.obj("offset" -> offset_query,
@@ -34,6 +42,7 @@ class FoundPriceController extends Controller {
                                      "total" -> 0),
                              "items" -> Json.parse(result)) 
     Ok(response)
+    
   }
 
   val foundPriceForm : Form[FoundPrice] = Form (
