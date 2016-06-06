@@ -46,9 +46,7 @@ import random
 def user1(l):
     location = random.choice(["Berazategui","Lanus","Bernal"])
     shops_items = json.loads(shops(l,location).content)['items']
-    print len(shops_items)
     if len(shops_items) == 0:
-        print "HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         crear_falsos_shops(l)
     shop_id = json.loads(shops(l,location).content)['items'][0]["id"]
     crear_found_price(l,shop_id)
@@ -91,14 +89,13 @@ def crear_shop(l):
         'address':random.choice(address), 
         'name': random.choice(name),
         'location': random.choice(location)})
-    return shop.headers['location'].split('\\')[4]
+
+    return shop.headers['location'].split('/')[4]
 
 def shops(l,location=None):
     if location == None:
         return l.client.get("/api/v1/shops")
     else:
-        print "locationnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn"
-        print location
         return l.client.get("/api/v1/shops?location="+location)
 
 
@@ -112,7 +109,7 @@ def found_prices(l):
 
 class UserBehavior(TaskSet):
     #tasks = {crear_shop:8,shops:1,shopsConOffsetYLimit:5,found_prices:2}
-    tasks = {user1:7,user2:3}
+    tasks = {user1:3,user2:1}
 
 class WebsiteUser(HttpLocust):
     task_set = UserBehavior
