@@ -104,8 +104,26 @@ donde "mongodbimage" es el nombre que va a tener la imagen de la base mongo(esto
 Una vez ejecutado ese script la aplicación ya está corriendo.
 Además se le a agregado una integración con New Relic a la imagen generada por lo que las métricas y análisis los vemos ahí.
 
+## Locust
+
+### Requisitos
+
++ [Python](https://www.python.org/)
++ [pip](https://pip.pypa.io/en/stable/installing/)
++ [Locust io](http://docs.locust.io/en/latest/installation.html) 
+
+
+### Correr los test
+
+Para correr los test de carga realizados por locus hay que posicionarse con la consola en la carpeta raíz del proyecyo y luego ejecutar el siguiente comando
+```
+locust -f locustfile.py --host=http://host:port
+```
+Donde host es el host sobre el que corre nuestra aplicación y port es dicho puerto.
+
 ##Link a app en heroku:
 
 http://aqueous-dusk-80720.herokuapp.com/
+
 
 -------------------------------
