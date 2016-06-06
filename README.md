@@ -115,11 +115,17 @@ Además se le a agregado una integración con New Relic a la imagen generada por
 
 ### Correr los test
 
+#### Corrida simple y local, sin rampa
+##### Levantar locust
 Para correr los test de carga realizados por locus hay que posicionarse con la consola en la carpeta raíz del proyecyo y luego ejecutar el siguiente comando
 ```
 locust -f locustfile.py --host=http://host:port
 ```
 Donde host es el host sobre el que corre nuestra aplicación y port es dicho puerto.
+
+##### Empezar el test
+
+Entrar en la dirección http://localhost:8089/ en un navegador web e indicar cuantos usarios se quieren simular en total (campo "Number of users to simulate") y cuantos quiere se inicien por segundo (campo "Hatch rate (users spawned/second)"). Una vez hecho esto pulsar el botón "Start Swarming". En la ventana podrán verse datos de como va corriendo el test y el mismo correra hasta que se pulse el botón de stop.
 
 ##Link a app en heroku:
 
