@@ -72,7 +72,7 @@ def crear_found_price(l,shop_id):
     datetime = ['28/05/2016', '03/06/2016', '23/03/2016', '28/02/2016', '16/12/2016', '03/08/2016', '14/02/2016']
 
     l.client.post('/api/v1/found-prices',
-        {'product_id': random.choice(product_id),
+        {'product_id': product_id,
         'price':random.choice(price), 
         'datetime': random.choice(datetime),
         'shop_id': shop_id})

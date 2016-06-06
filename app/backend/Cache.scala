@@ -1,6 +1,6 @@
 package backend
 import org.joda.time.DateTime
-import org.joda.time.Hours
+import org.joda.time.Minutes
 import scala.util.parsing.json.JSON._
 import play.api.Logger
 
@@ -25,7 +25,7 @@ object Cache {
     if (cache.contains(key)) {
       Logger.info("[CACHE] Retrieving result for key " + key + " from the cache" );
       val (result, date) = cache.get(key).get
-      val hours = Hours.hoursBetween(date, DateTime.now).getHours 
+      val hours = Minutes.minutesBetween(date, DateTime.now).getMinutes 
       if (hours <= expired_time_hours){
         Logger.info("[CACHE] The result for key " + key + " from the cache has been expired" );
         return Some(result)
