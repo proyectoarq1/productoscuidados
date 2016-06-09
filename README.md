@@ -86,25 +86,32 @@ Formulario para crear un nuevo negocio.
 
 Formulario para crear un nuevo precio encontrado.
 
+## Monitoreo
+La aplicación en heroku y la que corre en docker tienen integración con [New Relic](https://newrelic.com/) que nos brinda distintos tipos de métricas en relación al uso de la aplicación.
+
 ## Docker
 La aplicación tiene la opción de poder correr con docker sobre la imagen base "beevelop/java:latest"(Ubuntu 15.10-java8) y con una base de datos mongo. Para esto se generan 2 imágenes: Una para la base de datos y otra para la aplicación en si. Luego estas imágenes son linkeadas.
 Activator tiene integración con docker por lo que te deja customizar la imagen en el build.sbt de forma amena. Además de darte comandos para ayudarte a generarla:
 ```
 activator docker:stage - evalúa el build.sbt y genera el dockerfile correspondiente.
-activator docker:publishLocal - genera la imágen docker apartir del docker file antes generado.
+activator docker:publishLocal - genera la imágen docker apartir del dockerfile antes generado.
 ```
-Hay más comandos, pero estos 2 son los que particularmente nosotros usamos.
+Hay más comandos, pero estos 2 son los que particularmente usamos nosotros.
 
-Para correr la app en docker sólo hay que ejecutar el script:
+Para tener corriendo la app en docker hay que ejecutar 2 comandos:
 ```
-sh docker-play mongodbimage
+sh generate-docker-play.sh
+sh run-docker-play.sh mongodbimage
 ```
-donde "mongodbimage" es el nombre que va a tener la imagen de la base mongo(esto se parametrizó para hacer pruebas y así poder usar la misma imagen mongo para distintas imágenes de la aplicación).
+El primero nos generará la imagen del proyecto. Y el segundo levantará la imagen de mongo(de ser necesario) y la imagen del proyecto.
+Se puede ver que el segundo comando tiene un parámetro: "mongodbimage" que es el nombre que va a tener la imagen de la base mongo(esto se parametrizó para hacer pruebas y así poder usar la misma imagen mongo para distintas imágenes de la aplicación).
+El 2do script además nos ofrece la posibilidad de definir los recursos que va a tener el contenedor donde se levantará la imagen del proyecto. Para esto al correr el script te preguntará si quieres realizar esta configuración o si corre con los valores por defecto.
 
 Una vez ejecutado ese script la aplicación ya está corriendo.
 Además se le a agregado una integración con New Relic a la imagen generada por lo que las métricas y análisis los vemos ahí.
 
-## Locust
+## Test de carga
+Para utilizamos la herramienta [Locust](http://locust.io/)
 
 ### Requisitos
 
@@ -121,11 +128,25 @@ Para correr los test de carga realizados por locus hay que posicionarse con la c
 ```
 locust -f locustfile.py --host=http://host:port
 ```
-Donde host es el host sobre el que corre nuestra aplicación y port es dicho puerto.
+Donde host es el 'host' sobre el que corre nuestra aplicación y 'port' es dicho puerto.
 
 ##### Empezar el test
 
 Entrar en la dirección http://localhost:8089/ en un navegador web e indicar cuantos usarios se quieren simular en total (campo "Number of users to simulate") y cuantos quiere se inicien por segundo (campo "Hatch rate (users spawned/second)"). Una vez hecho esto pulsar el botón "Start Swarming". En la ventana podrán verse datos de como va corriendo el test y el mismo correra hasta que se pulse el botón de stop.
+
+### Herramienta extra para test de carga
+Con locust no pudimos configurar períodos de rampa en los tests, para suplir esta característica usamos como complemento [Taurus](http://gettaurus.org/)
+Se instala de manera muy sencilla con el comando: 
+```
+sudo pip install bzt
+```
+Taurus te pide definir un archivo yml donde hay configuración extra del test de carga que va a correr. Para ello le pasamos el locustfile.py mencionado más arriba.
+Para correr los test de carga ahora con la configuración extra de Taurus hay que correr el comando explicado en el menú más arriba llamado 'Levantar Locust' pero en vez de los pasos que dice el menú 'Empezar el test' hay que correr el siguiente comando:
+```
+bzt test.yml
+```
+Donde 'test.yml' es el archivo que configuramos de Taurus.
+Esto nos mostrará en consola unos gráficos sobre qué es lo que está pasando durante el test además de generarte en el proyecto una carpeta con la fecha y hora de corrida del test y una serie de reportes tales como la lista de request, los porcetajes, tiempos, etc.
 
 ##Link a app en heroku:
 
