@@ -111,11 +111,11 @@ Una vez ejecutado ese script la aplicación ya está corriendo.
 Además se le a agregado una integración con New Relic a la imagen generada por lo que las métricas y análisis los vemos ahí.
 
 ## Test de carga
-Para utilizamos la herramienta [Locust](http://locust.io/)
+Para ello utilizamos la herramienta [Locust](http://locust.io/)
 
 ### Requisitos
 
-+ [Python](https://www.python.org/)
++ [Python 2.7](https://www.python.org/downloads/release/python-2711/)
 + [pip](https://pip.pypa.io/en/stable/installing/)
 + [Locust io](http://docs.locust.io/en/latest/installation.html) 
 
