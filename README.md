@@ -104,8 +104,26 @@ sh generate-docker-play.sh
 sh run-docker-play.sh mongodbimage
 ```
 El primero nos generará la imagen del proyecto. Y el segundo levantará la imagen de mongo(de ser necesario) y la imagen del proyecto.
-Se puede ver que el segundo comando tiene un parámetro: "mongodbimage" que es el nombre que va a tener la imagen de la base mongo(esto se parametrizó para hacer pruebas y así poder usar la misma imagen mongo para distintas imágenes de la aplicación).
-El 2do script además nos ofrece la posibilidad de definir los recursos que va a tener el contenedor donde se levantará la imagen del proyecto. Para esto al correr el script te preguntará si quieres realizar esta configuración o si corre con los valores por defecto.
+Es importante que antes de correr el primer comando que corre el script del generate sepamos cuantas bases de datos vamos a querer usar. Las opcciones son:
+  - Un nodo: Una base de datos mongo
+  - Dos nodos: Una base de datos mongo y una replica
+  - Tres nodos: Una base de datos mongos y dos replicas
+Una vez que sepamos esto debemos editar el archivo de configuración de la aplicación de docker ubicado en la carpeta conf/ llamado application.docker.conf. Hay tres urls posibles de usar para la conección con mongo:
+```
+#Con un nodo
+mongodb.uri ="mongodb://mongoplay:27017/test"
+#____________________________
+
+#Con dos nodos
+#mongodb.uri ="mongodb://mongo1,mongo2:27017/test"
+#____________________________
+
+#Con tres nodos
+#mongodb.uri ="mongodb://mongo1,mongo2,mongo3:27017/test"
+```
+Si no modificasemos nada y corrieramos el comando directamente esto tendría la url de conección sólo para una base de datos sin replica (el mongodb.uri descomentado es "mongodb://mongoplay:27017/test", que arriba tiene el título de "#Con un nodo"). Para elegir la que queremos levantar (un nodo, dos nodos o bien tres nodos) debemos descomentar mondodb.uri que deseemos usar (finandonos en el titulo cual corresponde) y comendar los demás.
+Se puede ver que el segundo comando tiene un parámetro: "mongodbimage" que es el nombre que va a tener la imagen de la base mongo de ser usado un sólo nodo (esto se parametrizó para hacer pruebas y así poder usar la misma imagen mongo para distintas imágenes de la aplicación).
+El 2do script además nos ofrece la posibilidad de definir los recursos que va a tener el contenedor donde se levantará la imagen del proyecto. Para esto al correr el script te preguntará si quieres realizar esta configuración o si corre con los valores por defecto. Al optar por sí hacerlo se puede elegir también cuantos nodos va a tener la base de datos (por defecto es uno sólo).
 
 Una vez ejecutado ese script la aplicación ya está corriendo.
 Además se le a agregado una integración con New Relic a la imagen generada por lo que las métricas y análisis los vemos ahí.
