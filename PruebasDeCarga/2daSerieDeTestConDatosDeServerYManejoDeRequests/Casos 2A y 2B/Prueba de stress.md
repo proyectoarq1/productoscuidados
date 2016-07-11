@@ -28,13 +28,13 @@ Caso **2A**)
 
 |Name   |# reqs |# fails|Avg |Min  |Max  |Median   |req/s |
 |-------|-------|-------|----|-----|-----|---------|------|
-|POST /api/v1/found-prices  |                                   18538  |   0(0.00%) |     59   |    5  |   511  |      43   54.70 |
+|POST /api/v1/found-prices  |                                   18538  |   0(0.00%) |     59   |    5  |   511  |      43 |  54.70 |
 |POST /api/v1/shops         |                                    24427 |    0(0.00%) |     36   |    4  |   460  |      23 |  66.50|
 |GET /api/v1/shops?location=Berazategui |                        12247  |   0(0.00%) |     27   |    3  |   508  |      15 |  36.10|
 |GET /api/v1/shops?location=Bernal  |                            12160  |   0(0.00%)  |    26  |     3   |  438  |      14  | 32.00 |
 |GET /api/v1/shops?location=Lanus |                              12466   |  0(0.00%) |     27   |    3  |   515  |      14 |  35.90|
 |-------|-------|-------|----|-----|-----|---------|------|
-|Total  |79838  | 0(0.00%) | |     |     |          225.20|
+|Total  |79838  | 0(0.00%) | |     |     |         | 225.20|
 
 - Percentage of the requests completed within given times
 
