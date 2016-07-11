@@ -31,7 +31,8 @@ libraryDependencies ++= Seq(
   specs2 % Test,
   "org.mongodb" %% "casbah" % "3.1.1",
   "com.newrelic.agent.java" % "newrelic-agent" % "3.25.0",
-  "com.newrelic.agent.java" % "newrelic-api" % "3.25.0"
+  "com.newrelic.agent.java" % "newrelic-api" % "3.25.0",
+  "com.kenshoo" %% "metrics-play" % "2.4.0_0.4.1"
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"

@@ -1,0 +1,10 @@
+---
+execution:
+- concurrency: 500
+  executor: locust
+  hold-for: 5m
+  ramp-up: 10m
+  scenario:
+    default-address: http://localhost:9000
+    script: locustfile.py
+

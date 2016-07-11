@@ -1,0 +1,22 @@
+/home/tat/.local/lib/python2.7/site-packages/locust/rpc/__init__.py:6: UserWarning: WARNING: Using pure Python socket RPC implementation instead of zmq. If running in distributed mode, this could cause a performance decrease. We recommend you to install the pyzmq python package when running in distributed mode.
+  warnings.warn("WARNING: Using pure Python socket RPC implementation instead of zmq. If running in distributed mode, this could cause a performance decrease. We recommend you to install the pyzmq python package when running in distributed mode.")
+ Name                                                          # reqs      # fails     Avg     Min     Max  |  Median   req/s
+--------------------------------------------------------------------------------------------------------------------------------------------
+ POST /api/v1/found-prices                                      28855     0(0.00%)     139       4    1465  |      90   63.50
+ POST /api/v1/shops                                              7185     0(0.00%)      79       4    1059  |      25   15.10
+ GET /api/v1/shops?location=Berazategui                         14376     0(0.00%)      73       2    1256  |      20   30.90
+ GET /api/v1/shops?location=Bernal                              14539     0(0.00%)      74       2    1296  |      22   30.30
+ GET /api/v1/shops?location=Lanus                               14491     0(0.00%)      73       2    1268  |      21   35.50
+--------------------------------------------------------------------------------------------------------------------------------------------
+ Total                                                          79446     0(0.00%)                                     175.30
+
+Percentage of the requests completed within given times
+ Name                                                           # reqs    50%    66%    75%    80%    90%    95%    98%    99%   100%
+--------------------------------------------------------------------------------------------------------------------------------------------
+ POST /api/v1/found-prices                                       28855     90    140    180    220    330    440    580    680   1465
+ POST /api/v1/shops                                               7185     25     58     92    120    230    350    520    600   1059
+ GET /api/v1/shops?location=Berazategui                          14376     20     50     85    110    220    330    480    580   1256
+ GET /api/v1/shops?location=Bernal                               14539     22     53     86    110    220    340    480    580   1296
+ GET /api/v1/shops?location=Lanus                                14491     21     52     86    110    210    330    480    580   1268
+--------------------------------------------------------------------------------------------------------------------------------------------
+

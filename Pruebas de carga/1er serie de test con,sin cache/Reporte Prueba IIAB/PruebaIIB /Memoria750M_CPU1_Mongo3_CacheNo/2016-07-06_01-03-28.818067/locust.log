@@ -1,0 +1,7 @@
+[2016-07-06 01:03:30,622] Blabla/INFO/locust.main: Starting Locust 0.7.3
+[2016-07-06 01:03:30,622] Blabla/INFO/locust.runners: Hatching and swarming 500 clients at the rate 1 clients/s...
+[2016-07-06 01:11:52,552] Blabla/INFO/locust.runners: All locusts hatched: WebsiteUser: 500
+[2016-07-06 01:11:52,552] Blabla/INFO/locust.runners: Resetting stats
+
+[2016-07-06 01:18:45,416] Blabla/INFO/locust.main: Got SIGTERM signal
+[2016-07-06 01:18:45,416] Blabla/INFO/locust.main: Shutting down (exit code 0), bye.
