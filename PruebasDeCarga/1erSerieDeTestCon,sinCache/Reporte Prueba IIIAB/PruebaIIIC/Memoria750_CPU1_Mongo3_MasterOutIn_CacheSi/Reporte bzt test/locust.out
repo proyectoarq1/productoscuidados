@@ -1,0 +1,29 @@
+/usr/local/lib/python2.7/dist-packages/locust/rpc/__init__.py:6: UserWarning: WARNING: Using pure Python socket RPC implementation instead of zmq. If running in distributed mode, this could cause a performance decrease. We recommend you to install the pyzmq python package when running in distributed mode.
+  warnings.warn("WARNING: Using pure Python socket RPC implementation instead of zmq. If running in distributed mode, this could cause a performance decrease. We recommend you to install the pyzmq python package when running in distributed mode.")
+ Name                                                          # reqs      # fails     Avg     Min     Max  |  Median   req/s
+--------------------------------------------------------------------------------------------------------------------------------------------
+ POST /api/v1/found-prices                                      26909     1(0.00%)      68       3   22118  |      32   69.10
+ POST /api/v1/shops                                              6694     3(0.04%)     368       3   22749  |       7   16.50
+ GET /api/v1/shops?location=Berazategui                         13626     0(0.00%)     200       1   22801  |       4   35.40
+ GET /api/v1/shops?location=Bernal                              13456     0(0.00%)     205       1   22852  |       4   37.30
+ GET /api/v1/shops?location=Lanus                               13362     0(0.00%)     206       1   22831  |       4   33.80
+--------------------------------------------------------------------------------------------------------------------------------------------
+ Total                                                          74047     4(0.01%)                                     192.10
+
+Percentage of the requests completed within given times
+ Name                                                           # reqs    50%    66%    75%    80%    90%    95%    98%    99%   100%
+--------------------------------------------------------------------------------------------------------------------------------------------
+ POST /api/v1/found-prices                                       26909     32     43     55     65     98    140    240    840  22118
+ POST /api/v1/shops                                               6694      7     10     14     16     29     51    190  20000  22749
+ GET /api/v1/shops?location=Berazategui                          13626      4      7      9     12     22     42    150   2600  22801
+ GET /api/v1/shops?location=Bernal                               13456      4      7      9     11     21     46    190   2500  22852
+ GET /api/v1/shops?location=Lanus                                13362      4      7      9     11     22     45    180   3000  22831
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Error report
+ # occurences       Error                                                                                               
+--------------------------------------------------------------------------------------------------------------------------------------------
+ 3                  POST /api/v1/shops: "HTTPError('500 Server Error: Internal Server Error',)"                         
+ 1                  POST /api/v1/found-prices: "HTTPError('500 Server Error: Internal Server Error',)"                  
+--------------------------------------------------------------------------------------------------------------------------------------------
+

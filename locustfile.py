@@ -45,6 +45,7 @@ import random
 
 def user1(l):
     location = random.choice(["Berazategui","Lanus","Bernal"])
+    print location
     shops_items = json.loads(shops(l,location).content)['items']
     if len(shops_items) == 0:
         crear_falsos_shops(l)
