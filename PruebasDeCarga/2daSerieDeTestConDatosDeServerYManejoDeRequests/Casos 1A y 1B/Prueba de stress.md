@@ -68,6 +68,7 @@ Caso **1B**)
 | GET /api/v1/shops?location=Berazategui |  12296  |   0(0.00%)  |    30  |     3  |   539  |      13 |  34.20|
 | GET /api/v1/shops?location=Bernal | 12284   |  0(0.00%) |     29   |    3  |   529  |      13  | 35.90 |
 |GET /api/v1/shops?location=Lanus   | 12397  |   0(0.00%)  |    29  |     3  |   530  |      13 |  33.80|
+|Total                              |    67897 |    0(0.00%)      |||||                               188.90|
 
 - Percentage of the requests completed within given times
 
