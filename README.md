@@ -101,7 +101,7 @@ Hay más comandos, pero estos 2 son los que particularmente usamos nosotros.
 Para tener corriendo la app en docker hay que ejecutar 2 comandos:
 ```
 sh generate-docker-play.sh
-sh run-docker-play.sh mongodbimage
+sh run-docker-play.sh
 ```
 El primero nos generará la imagen del proyecto. Y el segundo levantará la imagen de mongo(de ser necesario) y la imagen del proyecto.
 Es importante que antes de correr el primer comando que corre el script del generate sepamos cuantas bases de datos vamos a querer usar. Las opcciones son:
@@ -122,7 +122,6 @@ mongodb.uri ="mongodb://mongoplay:27017/test"
 #mongodb.uri ="mongodb://mongo1,mongo2,mongo3:27017/test"
 ```
 Si no modificasemos nada y corrieramos el comando directamente esto tendría la url de conección sólo para una base de datos sin replica (el mongodb.uri descomentado es "mongodb://mongoplay:27017/test", que arriba tiene el título de "#Con un nodo"). Para elegir la que queremos levantar (un nodo, dos nodos o bien tres nodos) debemos descomentar mondodb.uri que deseemos usar (finandonos en el titulo cual corresponde) y comendar los demás.
-Se puede ver que el segundo comando tiene un parámetro: "mongodbimage" que es el nombre que va a tener la imagen de la base mongo de ser usado un sólo nodo (esto se parametrizó para hacer pruebas y así poder usar la misma imagen mongo para distintas imágenes de la aplicación).
 El 2do script además nos ofrece la posibilidad de definir los recursos que va a tener el contenedor donde se levantará la imagen del proyecto. Para esto al correr el script te preguntará si quieres realizar esta configuración o si corre con los valores por defecto. Al optar por sí hacerlo se puede elegir también cuantos nodos va a tener la base de datos (por defecto es uno sólo).
 
 Una vez ejecutado ese script la aplicación ya está corriendo.
