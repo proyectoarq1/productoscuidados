@@ -27,25 +27,25 @@ Caso 3A)
 
 - Resumen de request:
 
-|Name|# reqs|# fails|Avg|Min|Max|Median|req/s|
+|Name   |# reqs |# fails|Avg |Min  |Max  |Median   |req/s|
 |-------|-------|-------|----|-----|-----|---------|------|
 |POST /api/v1/found-prices                    |                  24000  |   0(0.00%)  |   133|       5|    1461  |      78|   63.90|
- |POST /api/v1/shops                            |                  6101  |   0(0.00%)   |   92 |      4 |   1349  |      35|   15.40|
- |GET /api/v1/shops?location=Berazategui         |                11898  |   0(0.00%)    |  71  |     3  |  1235  |      24|   35.40|
- |GET /api/v1/shops?location=Bernal               |               12087  |   0(0.00%)     | 71   |    3   | 1217  |      23|   30.60|
- |GET /api/v1/shops?location=Lanus                 |              11855  |   0(0.00%)      |71    |   3    |1241  |      24|   30.70|
-|Total                                                         | 65941   |  0(0.00%)           | | | | |                          176.00|
+|POST /api/v1/shops                            |                  6101  |   0(0.00%)   |   92 |      4 |   1349  |      35|   15.40|
+|GET /api/v1/shops?location=Berazategui         |                11898  |   0(0.00%)    |  71  |     3  |  1235  |      24|   35.40|
+|GET /api/v1/shops?location=Bernal               |               12087  |   0(0.00%)     | 71   |    3   | 1217  |      23|   30.60|
+|GET /api/v1/shops?location=Lanus                 |              11855  |   0(0.00%)      |71    |   3    |1241  |      24|   30.70|
 |-------|-------|-------|----|-----|-----|---------|------|
+|Total  | 65941 |0(0.00%) |  |     |     |         | 176.00|
 
-Percentage of the requests completed within given times
+- Percentage of the requests completed within given times
+
 |Name|# reqs|50%|66%|75%|80%|90%|95%|98%|99%|100%|
 |-------|-------|-----|-----|-----|------|-----|-----|-----|-----|-------|
- |POST /api/v1/found-prices                         |              24000 |    78   | 130|    170|    200|    320 |   440|    620|    750|   1461|
- |POST /api/v1/shops                               |                6101 |    35   |  65 |   100 |   130|    260  |  390|    560 |   710 |  13491
- |GET /api/v1/shops?location=Berazategui             |             11898 |    24   |  49  |   81  |  110 |   200   | 310 |   450  |  550  | 1235|
- |GET /api/v1/shops?location=Bernal                   |            12087 |    23  |   48   |  80   | 110  |  200  |  310  |  480   | 600 |  1217|
- |GET /api/v1/shops?location=Lanus                     |           11855 |    24 |    49    | 80    |110   | 200   | 310   | 450    |580  | 1241|
-|-------|-------|-----|-----|-----|------|-----|-----|-----|-----|-------|
+|POST /api/v1/found-prices                         |              24000 |    78   | 130|    170|    200|    320 |   440|    620|    750|   1461|
+|POST /api/v1/shops                               |                6101 |    35   |  65 |   100 |   130|    260  |  390|    560 |   710 |  13491
+|GET /api/v1/shops?location=Berazategui             |             11898 |    24   |  49  |   81  |  110 |   200   | 310 |   450  |  550  | 1235|
+|GET /api/v1/shops?location=Bernal                   |            12087 |    23  |   48   |  80   | 110  |  200  |  310  |  480   | 600 |  1217|
+|GET /api/v1/shops?location=Lanus                     |           11855 |    24 |    49    | 80    |110   | 200   | 310   | 450    |580  | 1241|
 
 
 Caso 3B)
@@ -68,13 +68,13 @@ Caso 3B)
 
 |Name|# reqs|# fails|Avg|Min|Max|Median|req/s|
 |-------|-------|-------|----|-----|-----|---------|------|
- |POST /api/v1/found-prices                          |            18903    |14(0.07%)|     171    |   6|   23283  |     100   |70.40|
- |POST /api/v1/shops                                  |            4687   | 20(0.42%) |    569   |    4 |  24922  |      52   |17.70|
- |GET /api/v1/shops?location=Berazategui               |           9645  |  27(0.28%)  |   312  |     3  | 24210  |      38  | 38.50|
- |GET /api/v1/shops?location=Bernal                     |          9650 |   34(0.35%)   |  330 |      3  | 23959  |      38 |  33.50|
- |GET /api/v1/shops?location=Lanus                       |         9218|    40(0.43%)    | 303|       3  | 23885  |      37|   31.00|
-|Total                                                       |   52103 |  135(0.26%)      |  ||||                                 191.10|
+|POST /api/v1/found-prices                          |            18903    |14(0.07%)|     171    |   6|   23283  |     100   |70.40|
+|POST /api/v1/shops                                  |            4687   | 20(0.42%) |    569   |    4 |  24922  |      52   |17.70|
+|GET /api/v1/shops?location=Berazategui               |           9645  |  27(0.28%)  |   312  |     3  | 24210  |      38  | 38.50|
+|GET /api/v1/shops?location=Bernal                     |          9650 |   34(0.35%)   |  330 |      3  | 23959  |      38 |  33.50|
+|GET /api/v1/shops?location=Lanus                       |         9218|    40(0.43%)    | 303|       3  | 23885  |      37|   31.00|
 |-------|-------|-------|----|-----|-----|---------|------|
+|Total  | 52103 |  135(0.26%) ||   |     |         | 191.10|
 
 - Percentage of the requests completed within given times
 
@@ -85,20 +85,18 @@ Caso 3B)
 | GET /api/v1/shops?location=Berazategui               |            9645  |   38  |  74 |  110 |  130 |  220|   360   | 720| 17000 | 24210|
 | GET /api/v1/shops?location=Bernal                    |            9650   |  38  |  71 |  100 |  130 |  230|   360   | 800| 18000 | 23959|
 | GET /api/v1/shops?location=Lanus                     |            9218    | 37  |  73 |  110 |  130 |  230|   360    |700 | 17000 | 23885|
-|-------|-------|-----|-----|-----|------|-----|-----|-----|-----|-------|
 
 - Errores
 
-| # Occurences   | Url    |   Error       |                                                                                             
+| # Occurences   | Url    |   Error       |              
 |----------------|------|-------------|
 | 27      |           GET /api/v1/shops?location=Berazategui| "HTTPError('429 Client Error: Too Many Requests',)" |        
 | 9        |          POST /api/v1/found-prices| "HTTPError('500 Server Error: Internal Server Error',)"           |       
 | 34        |         GET /api/v1/shops?location=Bernal| "HTTPError('429 Client Error: Too Many Requests',)"        |      
 | 20         |        POST /api/v1/shops| "HTTPError('429 Client Error: Too Many Requests',)"                        |     
-| 5           |       POST /api/v1/found-prices: "HTTPError('429 Client Error| Too Many Requests',)"                  |    
-| 1            |      GET /api/v1/shops?location=Lanus: "HTTPError('500 Server Error| Internal Server Error',)"        |   
-| 39            |     GET /api/v1/shops?location=Lanus: "HTTPError('429 Client Error| Too Many Requests',)"            |   
-|----------------|------|-----|
+| 5           |       POST /api/v1/found-prices| "HTTPError('429 Client Error Too Many Requests',)"                  |    
+| 1            |      GET /api/v1/shops?location=Lanus| "HTTPError('500 Server Error Internal Server Error',)"        |   
+| 39            |     GET /api/v1/shops?location=Lanus| "HTTPError('429 Client Error Too Many Requests',)"            |   
 
 Caso 3C)
 
@@ -120,37 +118,34 @@ Caso 3C)
 
 |Name|# reqs|# fails|Avg|Min|Max|Median|req/s|
 |-------|-------|-------|----|-----|-----|---------|------|
- |POST /api/v1/found-prices|  21829|12(0.05%)| 247|   5|   22523  |  85|   60.70|
- |POST /api/v1/shops|  5524|23(0.41%)| 512|   4 |  24972  |  41   |14.60|
- |GET /api/v1/shops?location=Berazategui| 10942|37(0.34%)| 320|   3   |23837  |  28|   28.90|
- |GET /api/v1/shops?location=Bernal|  10942|33(0.30%)| 314|   3   |23078  |  32 |  33.40|
- |GET /api/v1/shops?location=Lanus|   10848|37(0.34%)| 314|   3   |24082  |  31  | 32.20| 
- |Total|  60085 |  142(0.24%)|  ||||  169.80|
+|POST /api/v1/found-prices|  21829|12(0.05%)| 247|   5|   22523  |  85|   60.70|
+|POST /api/v1/shops|  5524|23(0.41%)| 512|   4 |  24972  |  41   |14.60|
+|GET /api/v1/shops?location=Berazategui| 10942|37(0.34%)| 320|   3   |23837  |  28|   28.90|
+|GET /api/v1/shops?location=Bernal|  10942|33(0.30%)| 314|   3   |23078  |  32 |  33.40|
+|GET /api/v1/shops?location=Lanus|   10848|37(0.34%)| 314|   3   |24082  |  31  | 32.20| 
 |-------|-------|-------|----|-----|-----|---------|------|
+|Total| 60085   |142(0.24%)| |     |     |         |169.80|
 
 - Percentage of the requests completed within given times
 
 |Name|# reqs|50%|66%|75%|80%|90%|95%|98%|99%|100%|
 |-------|-------|-----|-----|-----|------|-----|-----|-----|-----|-------|
- |POST /api/v1/found-prices|   21829| 85|160|240|310|590|930 |  1600 |  2500 | 22523|
- |POST /api/v1/shops|   5524| 41| 95|180|250|530|920  | 2300  |20000 | 24972|
- |GET /api/v1/shops?location=Berazategui|  10942| 28| 74|130|180|410|710 |  1500|   4500 | 23837|
- |GET /api/v1/shops?location=Bernal|   10942| 32| 82|140|200|420|720  | 1500 |  4400 | 23078|
- |GET /api/v1/shops?location=Lanus|10848| 31| 78|140|200|440|790  | 1600|   3100 | 24082|
-|-------|-------|-----|-----|-----|------|-----|-----|-----|-----|-------|
+|POST /api/v1/found-prices|   21829| 85|160|240|310|590|930 |  1600 |  2500 | 22523|
+|POST /api/v1/shops|   5524| 41| 95|180|250|530|920  | 2300  |20000 | 24972|
+|GET /api/v1/shops?location=Berazategui|  10942| 28| 74|130|180|410|710 |  1500|   4500 | 23837|
+|GET /api/v1/shops?location=Bernal|   10942| 32| 82|140|200|420|720  | 1500 |  4400 | 23078|
+|GET /api/v1/shops?location=Lanus|10848| 31| 78|140|200|440|790  | 1600|   3100 | 24082|
 
 - Errores
 
-| # Occurences   | Url    |   Error       |                                                                                             
-|----------------|------|-------------|
- |37| GET /api/v1/shops?location=Berazategui| "HTTPError('429 Client Error: Too Many Requests',)"| 
- |7|  POST /api/v1/found-prices| "HTTPError('500 Server Error: Internal Server Error',)"|  
- |33| GET /api/v1/shops?location=Bernal| "HTTPError('429 Client Error: Too Many Requests',)"|  
- |23| POST /api/v1/shops| "HTTPError('429 Client Error: Too Many Requests',)"| 
- |5|  POST /api/v1/found-prices| "HTTPError('429 Client Error: Too Many Requests',)"|  
- |1|  GET /api/v1/shops?location=Lanus| "HTTPError('500 Server Error: Internal Server Error',)"|   
+| # Occurences   | Url    |   Error       |                                                                                |----------------|------|-------------|
+|37| GET /api/v1/shops?location=Berazategui| "HTTPError('429 Client Error: Too Many Requests',)"| 
+|7 |  POST /api/v1/found-prices| "HTTPError('500 Server Error: Internal Server Error',)"|  
+|33| GET /api/v1/shops?location=Bernal| "HTTPError('429 Client Error: Too Many Requests',)"|  
+|23| POST /api/v1/shops| "HTTPError('429 Client Error: Too Many Requests',)"| 
+|5 |  POST /api/v1/found-prices| "HTTPError('429 Client Error: Too Many Requests',)"|  
+|1 |  GET /api/v1/shops?location=Lanus| "HTTPError('500 Server Error: Internal Server Error',)"|   
 | 36| GET /api/v1/shops?location=Lanus| "HTTPError('429 Client Error: Too Many Requests',)"|      
-|----------------|------|-----|
 
 ### **Conclusiones**
 
