@@ -61,15 +61,15 @@ Caso 1B)
 
 - Resumen de request:
 
-|Name|# reqs|# fails|Avg|Min|Max|Median|req/s|
+|Name   |# reqs |# fails|Avg |Min  |Max  |Median   |req/s|
 |-------|-------|-------|----|-----|-----|---------|------|
- |POST /api/v1/found-prices |                                     24703   |  0(0.00%)   |   73    |   4  |   716  |      50  | 67.80 |
- |POST /api/v1/shops |                                             6217  |   0(0.00%)   |   35   |    4   |  593  |      17 |  17.20 |
-| GET /api/v1/shops?location=Berazategui |                        12296  |   0(0.00%)  |    30  |     3  |   539  |      13 |  34.20|
-| GET /api/v1/shops?location=Bernal |                             12284   |  0(0.00%) |     29   |    3  |   529  |      13  | 35.90 |
- |GET /api/v1/shops?location=Lanus   |                            12397  |   0(0.00%)  |    29  |     3  |   530  |      13 |  33.80|
+|POST /api/v1/found-prices |  24703   |  0(0.00%)   |   73    |   4  |   716  |      50  | 67.80 |
+|POST /api/v1/shops |  6217  |   0(0.00%)   |   35   |    4   |  593  |      17 |  17.20 |
+| GET /api/v1/shops?location=Berazategui |  12296  |   0(0.00%)  |    30  |     3  |   539  |      13 |  34.20|
+| GET /api/v1/shops?location=Bernal | 12284   |  0(0.00%) |     29   |    3  |   529  |      13  | 35.90 |
+|GET /api/v1/shops?location=Lanus   | 12397  |   0(0.00%)  |    29  |     3  |   530  |      13 |  33.80|
 
--Percentage of the requests completed within given times
+- Percentage of the requests completed within given times
 
 |Name|# reqs|50%|66%|75%|80%|90%|95%|98%|99%|100%|
 |-------|-------|-----|-----|-----|------|-----|-----|-----|-----|-------|
@@ -77,7 +77,7 @@ Caso 1B)
 |POST /api/v1/shops |                                              6217 |    17  |   27  |   38   |  48  |   82  |  130 |   210 |   300 |   593 |
 | GET /api/v1/shops?location=Berazategui |                         12296 |    13  |   22  |   32 |    40  |   75  |  120 |   180 |   250  |  539 |
 |GET /api/v1/shops?location=Bernal |                              12284   |  13  |   21 |    30 |    38  |   70 |   110 |   170  |  230  |  529 |
-|GET /api/v1/shops?location=Lanus |                               12397  |   13  |   22  |   31  |   39  |   74  |  120    180  |  230 |   530|
+|GET /api/v1/shops?location=Lanus |                               12397  |   13  |   22  |   31  |   39  |   74  |  120  |  180  |  230 |   530|
 
 
 ### **Conclusiones**
