@@ -2,8 +2,11 @@ Pruebas de stress
 ===================
 
 ####Comparativo de:
+
 1. _Caso 1A. Desempeño de un nodo virtual de aplicación con 1 CPU; y 1 nodo de BD._
+
 2. _Caso 1B Desempeño de un nodo virtual de aplicación con 2 CPU; y 1 nodo de BD._
+
 
 > **Nota:**
 > El test tiene las siguientes carácterísticas:

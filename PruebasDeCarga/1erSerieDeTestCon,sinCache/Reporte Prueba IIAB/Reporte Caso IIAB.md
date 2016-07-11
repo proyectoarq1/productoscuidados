@@ -3,7 +3,9 @@ Pruebas de stress
 
 ####Comparativo de:
 A. _Caso 2A. Desempeño de un nodo virtual de aplicación con 1 CPU; y 2 nodos de BD en réplica._
+
 B. _Caso 2B. Desempeño de un nodo virtual de aplicación con 1 CPU; y 3 nodos de BD en réplica._
+
 
 > **Nota:**
 > El test tiene las siguientes carácterísticas:
@@ -36,9 +38,10 @@ A) Sin cache:
 | GET /api/v1/shops?location=Bernal      |  14296 |  0(0.00%) |    14 |    2  |   425  |       6 |  35.80 |
 | GET /api/v1/shops?location=Lanus  |   14486 |    0(0.00%)  |    14  |     2 |    411  |       6 |  36.00 |
 |---------|-------------|----------|----------|-----|-------|-------|-------------|
-| Total   |       78391 | 0(0.00%) |          |     |       |       |        193.50
+| Total   |       78391 | 0(0.00%) |          |     |       |       |        193.50|
 
 - Percentage of the requests completed within given times
+
 | Name          |                         # reqs  |  50%  |  66% |   75% |   80% |   90%  |  95% |   98% |   99% |  100% |
 |---------------|---------------------------|--------|--------|--------|--------|---------|-------|--------|--------|----------|
 | POST /api/v1/found-prices | 28468 |  37  |   54  |   70  |   83  |  120  |  160 |   210 |   250  |  710 |
@@ -59,7 +62,8 @@ A) Con cache:
 
 - El pico de request fue de 12722 con 11.8 ms por request.
 - Total 139727 transacciones. 
-- Resumen de requests
+- Resumen de requests:
+
 | Name      |  # reqs  |    # fails  |   Avg  |   Min  |   Max  |  Median |  req/s |
 |-----------|----------|------------|--------|--------|---------|---------|--------|
 | POST /api/v1/found-prices  | 30191  | 0(0.00%)  |  49 |  3  |   943  |   33 |  70.10 |

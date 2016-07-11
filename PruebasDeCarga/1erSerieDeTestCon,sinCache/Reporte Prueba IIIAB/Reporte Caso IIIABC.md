@@ -4,8 +4,11 @@ Pruebas de stress
 ####Comparativo de:
 
  A) _Caso 3A. Desempeño de un nodo virtual de aplicación con 1 CPU; y 3 nodos de BD en réplica (2), eliminando un nodo Slave durante el tope de carga._
+
  B) _Caso 3B. Desempeño de un nodo virtual de aplicación con 1 CPU; y 3 nodos de BD en réplica (2), eliminando un nodo Master durante el tope de carga._
+
  C) _Caso 3C. Desempeño de un nodo virtual de aplicación con 1 CPU; y 3 nodos de BD en réplica (2), eliminando un nodo Master durante el tope de carga y luego reintegrarlo al Cluster._
+
 
 > **Nota:**
 > El test tiene las siguientes carácterísticas:
