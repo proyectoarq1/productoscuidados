@@ -3,8 +3,8 @@ Prueba de stress
 
 ####Comparativo de:
 
- - _Caso 1A: Desempeño de un nodo virtual de aplicación con 1 CPU; y 1 nodo de BD_
- - _Caso 1B: Desempeño de un nodo virtual de aplicación con 2 CPU; y 1 nodo de BD_
+ - _Caso **1A**: Desempeño de un nodo virtual de aplicación con 1 CPU; y 1 nodo de BD_
+ - _Caso **1B**: Desempeño de un nodo virtual de aplicación con 2 CPU; y 1 nodo de BD_
 
 
 > **Nota:**
@@ -12,7 +12,7 @@ Prueba de stress
 
 ----------
 
-Caso 1A)
+Caso **1A**)
 
 - Luego de aproximadamente 7 minutos de comenzar el test de carga el tiempo de respuesta comienza a subir considerablemente (siendo en ese punto  42.7 ms por request el tiempo de respuesta sobre  11466.4 transacciones)
 
@@ -47,7 +47,7 @@ Caso 1A)
 |GET /api/v1/shops?location=Lanus|12066|14|     23|33|41|77|120|200|300|699|
 
 
-Caso 1B)
+Caso **1B**)
 
 - Luego de aproximadamente 8 minutos de comenzar el test de carga el tiempo de respuesta comienza a subir para no bajar (siendo en ese punto  30.4 ms por request el tiempo de respuesta sobre  11964.5 transacciones)
 
@@ -82,18 +82,18 @@ Caso 1B)
 
 ### **Conclusiones**
 
-El CPU extra utilizado permitió que en el segundo caso (Caso 1B) se dieran las siguientes situaciones favorables:
+El CPU extra utilizado permitió que en el segundo caso (Caso **1B**) se dieran las siguientes situaciones favorables:
 
 - El tiempo de respuesta comienza a subir después:
  -  En el caso **1A** fue a los 7 minutos 
  - En el **1B** a los 8 minutos.
   
--  Además, en ese punto el tiempo de respuesta en el caso 1B era también mejor.
+-  Además, en ese punto el tiempo de respuesta en el caso **1B** era también mejor.
  -  **1B:** 30.4 ms por request el tiempo promediode respuesta sobre  11964.5 transacciones 
  - **1A:** 42.7 ms por request el tiempo promediode respuesta sobre 11466.4 transacciones 
-     - Son 12.3 ms de diferencia (Siendo 502.1 transacciones menos en el caso 1A)  
+     - Son 12.3 ms de diferencia (Siendo 502.1 transacciones menos en el caso **1A**)  
 
-- Durante el pico de tiempo de respuesta hay una diferencia significativa también a favor de la prueba 1B: 
+- Durante el pico de tiempo de respuesta hay una diferencia significativa también a favor de la prueba **1B**: 
 - Durante el caso **1A** son 189 ms por request, 
 - Durante el caso **1B** son 77.8 ms por request
 	- El caso **1A** tardó en responder durante el pico más del doble que el **1B**.
