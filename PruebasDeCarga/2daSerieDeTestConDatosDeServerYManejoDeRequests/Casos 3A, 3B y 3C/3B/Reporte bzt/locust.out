@@ -1,0 +1,34 @@
+/home/tat/.local/lib/python2.7/site-packages/locust/rpc/__init__.py:6: UserWarning: WARNING: Using pure Python socket RPC implementation instead of zmq. If running in distributed mode, this could cause a performance decrease. We recommend you to install the pyzmq python package when running in distributed mode.
+  warnings.warn("WARNING: Using pure Python socket RPC implementation instead of zmq. If running in distributed mode, this could cause a performance decrease. We recommend you to install the pyzmq python package when running in distributed mode.")
+ Name                                                          # reqs      # fails     Avg     Min     Max  |  Median   req/s
+--------------------------------------------------------------------------------------------------------------------------------------------
+ POST /api/v1/found-prices                                      18903    14(0.07%)     171       6   23283  |     100   70.40
+ POST /api/v1/shops                                              4687    20(0.42%)     569       4   24922  |      52   17.70
+ GET /api/v1/shops?location=Berazategui                          9645    27(0.28%)     312       3   24210  |      38   38.50
+ GET /api/v1/shops?location=Bernal                               9650    34(0.35%)     330       3   23959  |      38   33.50
+ GET /api/v1/shops?location=Lanus                                9218    40(0.43%)     303       3   23885  |      37   31.00
+--------------------------------------------------------------------------------------------------------------------------------------------
+ Total                                                          52103   135(0.26%)                                     191.10
+
+Percentage of the requests completed within given times
+ Name                                                           # reqs    50%    66%    75%    80%    90%    95%    98%    99%   100%
+--------------------------------------------------------------------------------------------------------------------------------------------
+ POST /api/v1/found-prices                                       18903    100    150    190    220    330    470    740   1200  23283
+ POST /api/v1/shops                                               4687     52     92    130    160    290    470  18000  21000  24922
+ GET /api/v1/shops?location=Berazategui                           9645     38     74    110    130    220    360    720  17000  24210
+ GET /api/v1/shops?location=Bernal                                9650     38     71    100    130    230    360    800  18000  23959
+ GET /api/v1/shops?location=Lanus                                 9218     37     73    110    130    230    360    700  17000  23885
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+Error report
+ # occurences       Error                                                                                               
+--------------------------------------------------------------------------------------------------------------------------------------------
+ 27                 GET /api/v1/shops?location=Berazategui: "HTTPError('429 Client Error: Too Many Requests',)"         
+ 9                  POST /api/v1/found-prices: "HTTPError('500 Server Error: Internal Server Error',)"                  
+ 34                 GET /api/v1/shops?location=Bernal: "HTTPError('429 Client Error: Too Many Requests',)"              
+ 20                 POST /api/v1/shops: "HTTPError('429 Client Error: Too Many Requests',)"                             
+ 5                  POST /api/v1/found-prices: "HTTPError('429 Client Error: Too Many Requests',)"                      
+ 1                  GET /api/v1/shops?location=Lanus: "HTTPError('500 Server Error: Internal Server Error',)"           
+ 39                 GET /api/v1/shops?location=Lanus: "HTTPError('429 Client Error: Too Many Requests',)"               
+--------------------------------------------------------------------------------------------------------------------------------------------
+
