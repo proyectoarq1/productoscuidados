@@ -33,10 +33,11 @@ Caso 1A)
 |GET /api/v1/shops?location=Berazategui|12293|0(0.00%)|33|3|680|14|33.10|
 |GET /api/v1/shops?location=Bernal|12015|0(0.00%)|33|3|618|14|34.80|
 |GET /api/v1/shops?location=Lanus|12066|0(0.00%)|32|3| 699|14 |32.20|
-|Total|67126|0(0.00%)|||||179.80
 |-------|-------|-------|----|-----|-----|---------|------|
+|Total  |67126  |0(0.00%)|   |     |     |         |179.80|
 
-Percentage of the requests completed within given times
+-Percentage of the requests completed within given times
+
 |Name|# reqs|50%|66%|75%|80%|90%|95%|98%|99%|100%|
 |-------|-------|-----|-----|-----|------|-----|-----|-----|-----|-------|
 |POST /api/v1/found-prices|24455|51|78|99|110|160|220| 340|420|858|
@@ -44,7 +45,6 @@ Percentage of the requests completed within given times
 |GET /api/v1/shops?location=Berazategui|12293|14|23|  34|44|83|130|220|310|680|
 |GET /api/v1/shops?location=Bernal|12015|14|24|33|42|    80|130|220|300|618|
 |GET /api/v1/shops?location=Lanus|12066|14|     23|33|41|77|120|200|300|699|
-|-------|-------|-----|-----|-----|------|-----|-----|-----|-----|-------|
 
 
 Caso 1B)
@@ -68,9 +68,9 @@ Caso 1B)
 | GET /api/v1/shops?location=Berazategui |                        12296  |   0(0.00%)  |    30  |     3  |   539  |      13 |  34.20|
 | GET /api/v1/shops?location=Bernal |                             12284   |  0(0.00%) |     29   |    3  |   529  |      13  | 35.90 |
  |GET /api/v1/shops?location=Lanus   |                            12397  |   0(0.00%)  |    29  |     3  |   530  |      13 |  33.80|
--|-------|-------|-------|----|-----|-----|---------|------|
 
-Percentage of the requests completed within given times
+-Percentage of the requests completed within given times
+
 |Name|# reqs|50%|66%|75%|80%|90%|95%|98%|99%|100%|
 |-------|-------|-----|-----|-----|------|-----|-----|-----|-----|-------|
 |POST /api/v1/found-prices   |                                    24703  |   50  |   77   |  98  |  110 |   160  |  210 |   280  |  350  |  716 |
@@ -78,7 +78,6 @@ Percentage of the requests completed within given times
 | GET /api/v1/shops?location=Berazategui |                         12296 |    13  |   22  |   32 |    40  |   75  |  120 |   180 |   250  |  539 |
 |GET /api/v1/shops?location=Bernal |                              12284   |  13  |   21 |    30 |    38  |   70 |   110 |   170  |  230  |  529 |
 |GET /api/v1/shops?location=Lanus |                               12397  |   13  |   22  |   31  |   39  |   74  |  120    180  |  230 |   530|
-|-------|-------|-----|-----|-----|------|-----|-----|-----|-----|-------|
 
 
 ### **Conclusiones**
