@@ -3,8 +3,8 @@ Prueba de stress
 
 ####Comparativo de:
 
- A) _Caso 1A: Desempeño de un nodo virtual de aplicación con 1 CPU; y 1 nodo de BD_
- B) _Caso 1B: Desempeño de un nodo virtual de aplicación con 2 CPU; y 1 nodo de BD_
+ - _Caso 1A: Desempeño de un nodo virtual de aplicación con 1 CPU; y 1 nodo de BD_
+ - _Caso 1B: Desempeño de un nodo virtual de aplicación con 2 CPU; y 1 nodo de BD_
 
 
 > **Nota:**
@@ -36,7 +36,7 @@ Caso 1A)
 |-------|-------|-------|----|-----|-----|---------|------|
 |Total  |67126  |0(0.00%)|   |     |     |         |179.80|
 
--Percentage of the requests completed within given times
+- Percentage of the requests completed within given times
 
 |Name|# reqs|50%|66%|75%|80%|90%|95%|98%|99%|100%|
 |-------|-------|-----|-----|-----|------|-----|-----|-----|-----|-------|
