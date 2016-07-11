@@ -3,8 +3,8 @@ Prueba de stress
 
 ####Comparativo de:
 
- A) _Caso 2A: Desempeño de un nodo virtual de aplicación con 1 CPU; y 2 nodos de BD en réplica_
- B) _Caso 2B: Desempeño de un nodo virtual de aplicación con 1 CPU; y 3 nodos de BD en réplica_
+ - _Caso **2A**: Desempeño de un nodo virtual de aplicación con 1 CPU; y 2 nodos de BD en réplica_
+ - _Caso **2B**: Desempeño de un nodo virtual de aplicación con 1 CPU; y 3 nodos de BD en réplica_
 
 
 > **Nota:**
@@ -12,7 +12,7 @@ Prueba de stress
 
 ----------
 
-Caso 2A)
+Caso **2A**)
 
 - Luego de aproximadamente 5 minutos de comenzar el test de carga el tiempo de respuesta comienza a subir para durante el resto del test no volver a bajar (siendo en ese punto  8.26 ms por request el tiempo de respuesta sobre  5705.9 transacciones)
 
@@ -50,7 +50,7 @@ Caso 2A)
 
 
 
-Caso 2B)
+Caso **2B**)
 
 - Luego de aproximadamente 8 minutos de comenzar el test de carga el tiempo de respuesta comienza a subir para no bajar (siendo en ese punto  24.7 ms por request el tiempo de respuesta sobre  13350.1 transacciones)
 
