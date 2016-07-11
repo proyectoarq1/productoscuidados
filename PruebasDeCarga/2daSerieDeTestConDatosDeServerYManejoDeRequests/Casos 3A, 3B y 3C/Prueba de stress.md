@@ -138,7 +138,8 @@ Caso 3C)
 
 - Errores
 
-| # Occurences   | Url    |   Error       |                                                                                |----------------|------|-------------|
+| # Occurences   | Url    |   Error   |
+|----------------|------|-------------|
 |37| GET /api/v1/shops?location=Berazategui| "HTTPError('429 Client Error: Too Many Requests',)"| 
 |7 |  POST /api/v1/found-prices| "HTTPError('500 Server Error: Internal Server Error',)"|  
 |33| GET /api/v1/shops?location=Bernal| "HTTPError('429 Client Error: Too Many Requests',)"|  
