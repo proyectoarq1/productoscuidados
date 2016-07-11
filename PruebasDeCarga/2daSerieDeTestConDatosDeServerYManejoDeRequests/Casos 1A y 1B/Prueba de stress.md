@@ -33,7 +33,6 @@ Caso **1A**)
 |GET /api/v1/shops?location=Berazategui|12293|0(0.00%)|33|3|680|14|33.10|
 |GET /api/v1/shops?location=Bernal|12015|0(0.00%)|33|3|618|14|34.80|
 |GET /api/v1/shops?location=Lanus|12066|0(0.00%)|32|3| 699|14 |32.20|
-|-------|-------|-------|----|-----|-----|---------|------|
 |Total  |67126  |0(0.00%)|   |     |     |         |179.80|
 
 - Percentage of the requests completed within given times
